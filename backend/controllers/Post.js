@@ -5,7 +5,7 @@ const fs = require("fs");
 exports.AllPosts = (req, res, next) => {
   Post.find()
     .then((Posts) => res.send(Posts))
-    .catch((error) => res.status(403).json({ error }));
+    .catch((error) => res.status(400).json({ error }));
 };
 
 exports.AddPost = (req, res, next) => {
@@ -19,7 +19,7 @@ exports.AddPost = (req, res, next) => {
   newPost
     .save()
     .then((Post) => res.status(200).json({ message: "ok" }))
-    .catch((error) => res.status(403).json({ message: "Problème" }));
+    .catch((error) => res.status(400).json({ message: "Problème" }));
 };
 
 exports.PostId = (req, res, next) => {
@@ -27,7 +27,7 @@ exports.PostId = (req, res, next) => {
     .then((Post) => {
       return res.status(200).json(Post);
     })
-    .catch((error) => res.status(403).json({ error }));
+    .catch((error) => res.status(400).json({ error }));
 };
 
 exports.ModifyPost = (req, res, next) => {
@@ -48,24 +48,15 @@ exports.ModifyPost = (req, res, next) => {
           if (error) throw error;
         });
       })
-      .catch((error) => res.status(403).json({ message: "error Post" }));
+      .catch((error) => res.status(400).json({ message: "error Post" }));
   }
-  //S'il y a une image a modifier / Supprimer l'ancienne image
-  // -Connaitre l'ancienne image?
-  //Supprimer cette image (Plugin NPM FS)
-  //UpdateOne Post
 
   Post.updateOne({ _id: req.params.id }, { ...editPost, _id: req.params.id })
     .then(() => res.status(200).json({ message: "Post modifiée !" }))
-    .catch((error) => res.status(403).json({ error }));
+    .catch((error) => res.status(400).json({ error }));
 };
 
 exports.deletePost = (req, res, next) => {
-  //Supprimer l'image
-  // -Trouver l'image
-  // -Supprimer l'image (fs)
-  // -Delete Post
-
   Post.findOne({ _id: req.params.id })
     .then((imgObjet) => {
       const filename = imgObjet.imageUrl.split("/images/")[1];
@@ -74,18 +65,18 @@ exports.deletePost = (req, res, next) => {
           .then(() => {
             res.status(200).json({ message: "Post supprimée !" });
           })
-          .catch((error) => res.status(403).json({ error }));
+          .catch((error) => res.status(400).json({ error }));
       });
     })
     .catch((error) => {
-      res.status(403).json({ message: "error" });
+      res.status(400).json({ message: "error" });
     });
 };
 
 exports.likePost = (req, res, next) => {
   const { like, userId } = req.body;
 
-  Posts.findOne({ _id: req.params.id })
+  Post.findOne({ _id: req.params.id })
     .then((PostLike) => {
       if (!PostLike.usersLiked.includes(userId) && like === 1) {
         Posts.updateOne(
@@ -96,11 +87,11 @@ exports.likePost = (req, res, next) => {
           }
         )
           .then(() => res.status(200).json({ message: "like ajouté !" }))
-          .catch((error) => res.status(403).json({ message: "error" }));
+          .catch((error) => res.status(400).json({ message: "error" }));
       }
 
       if (PostLike.usersLiked.includes(userId) && like === 0) {
-        Posts.updateOne(
+        Post.updateOne(
           { _id: req.params.id },
           {
             $inc: { likes: -1 },
@@ -108,11 +99,11 @@ exports.likePost = (req, res, next) => {
           }
         )
           .then(() => res.status(200).json({ message: "pas de like" }))
-          .catch((error) => res.status(403).json({ message: "error" }));
+          .catch((error) => res.status(400).json({ message: "error" }));
       }
 
       if (!PostLike.usersDisliked.includes(userId) && like === -1) {
-        Posts.updateOne(
+        Post.updateOne(
           { _id: req.params.id },
           {
             $inc: { dislikes: 1 },
@@ -120,7 +111,7 @@ exports.likePost = (req, res, next) => {
           }
         )
           .then(() => res.status(200).json({ message: "dislike ajouté" }))
-          .catch((error) => res.status(403).json({ message: "error" }));
+          .catch((error) => res.status(400).json({ message: "error" }));
       }
 
       if (PostLike.usersDisliked.includes(userId) && like === 0) {
@@ -132,8 +123,21 @@ exports.likePost = (req, res, next) => {
           }
         )
           .then(() => res.status(200).json({ message: "pas de dislike" }))
-          .catch((error) => res.status(403).json({ message: "error" }));
+          .catch((error) => res.status(400).json({ message: "error" }));
       }
     })
-    .catch((error) => res.status(403).json({ error }));
+    .catch((error) => res.status(400).json({ error }));
+};
+
+exports.commentPost = (req, res, next) => {
+
+
+};
+
+exports.editCommentPost = (req, res, next) => {
+
+};
+
+exports.deleteCommentPost = (req, res, next) => {
+
 };

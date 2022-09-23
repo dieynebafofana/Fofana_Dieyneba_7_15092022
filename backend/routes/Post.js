@@ -12,4 +12,10 @@ router.post("/:id/like", auth, PostCtrl.likePost);
 router.put("/:id", auth, multer, PostCtrl.ModifyPost);
 router.delete("/:id", auth, PostCtrl.deletePost);
 
+
+router.patch("/comment-post/:id",PostCtrl.commentPost);
+router.patch("/editCommentPost/:id",PostCtrl.editCommentPost);
+router.patch("deleteCommentPost/:id",PostCtrl.deleteCommentPost);
+
+
 module.exports = router;

@@ -16,9 +16,9 @@ exports.signup = (req, res, next) => {
       user
         .save()
         .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
-        .catch((error) => res.status(403).json({ message: "utilisateur" }));
+        .catch((error) => res.status(400).json({ message: "utilisateur déja créé" }));
     })
-    .catch((error) => res.status(403).json({ error }));
+    .catch((error) => res.status(400).json({ error }));
 };
 
 exports.login = (req, res, next) => {
@@ -26,7 +26,7 @@ exports.login = (req, res, next) => {
     .then((user) => {
       if (!user) {
         return res
-          .status(403)
+          .status(400)
           .json({ message: "Paire login/mot de passe incorrecte" });
       }
       bcrypt
@@ -34,7 +34,7 @@ exports.login = (req, res, next) => {
         .then((valid) => {
           if (!valid) {
             return res
-              .status(403)
+              .status(400)
               .json({ message: "Paire login/mot de passe incorrecte" });
           }
           res.status(200).json({
@@ -44,22 +44,12 @@ exports.login = (req, res, next) => {
             }),
           });
         })
-        .catch((error) => res.status(403).json({ error }));
+        .catch((error) => res.status(400).json({ error }));
     })
-    .catch((error) => res.status(403).json({ error }));
+    .catch((error) => res.status(400).json({ error }));
 };
 
-/*exports.createImage = (req, res, next) => {
-    const imageObject = JSON.parse(req.body.User);
-    delete imageObject._id;
-    delete imageObject._userId;
-    const userImage = new userImage({
-        ...imageObject,
-        userId: req.auth.userId,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    });
-  
-    userImage.save()
-    .then(() => { res.status(201).json({message: 'image enregistrée !'})})
-    .catch(error => { res.status(400).json( { error })})
- };*/
+exports.logout = (req, res, next) => {
+  res.send({ userId: user._id }, process.env.TOKEN)
+  res.redirect('/');
+}
