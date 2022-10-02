@@ -8,7 +8,7 @@ const path = require("path");
 const userRoutes = require("./routes/User");
 const postRoutes = require("./routes/Post");
 
-const Url = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@${process.env.HOST}${process.env.USER}?retryWrites=true&w=majority`;
+const Url = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@${process.env.HOST}?retryWrites=true&w=majority`;
 
 mongoose
   .connect(Url, { useNewUrlParser: true, useUnifiedTopology: true })

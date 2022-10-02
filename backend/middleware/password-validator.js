@@ -21,6 +21,7 @@ passWordSchema
   .oneOf(["Passw0rd", "Password123"]); // Blacklist these values
 
 module.exports = (req, res, next) => {
+  console.log(req.body)
   if (passWordSchema.validate(req.body.password)) {
     next();
   } else {
@@ -28,7 +29,7 @@ module.exports = (req, res, next) => {
       .status(403)
       .json({
         error:
-          "password faible" +
+          "password faible " +
           passWordSchema.validate("req.body.password", { list: true }),
       });
   }

@@ -12,6 +12,7 @@ exports.signup = (req, res, next) => {
         email: req.body.email,
         password: hash,
       });
+      console.log(req.body.password),
       console.log(user);
       user
         .save()
@@ -22,8 +23,10 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
+  console.log(req.body);
   User.findOne({ email: req.body.email })
     .then((user) => {
+      console.log(user);
       if (!user) {
         return res
           .status(400)
@@ -49,7 +52,4 @@ exports.login = (req, res, next) => {
     .catch((error) => res.status(400).json({ error }));
 };
 
-exports.logout = (req, res, next) => {
-  res.send({ userId: user._id }, process.env.TOKEN)
-  res.redirect('/');
-}
+
