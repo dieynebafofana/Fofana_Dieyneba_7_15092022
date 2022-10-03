@@ -129,15 +129,3 @@ exports.likePost = (req, res, next) => {
     .catch((error) => res.status(400).json({ error }));
 };
 
-exports.commentPost = (req, res, next) => {
-
-
-};
-
-exports.editCommentPost = (req, res, next) => {
-
-};
-
-exports.deleteCommentPost = (req, res, next) => {
-
-};

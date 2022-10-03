@@ -1,0 +1,35 @@
+.navigation{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    border-bottom: 3px black solid;
+}
+
+.navigation a {
+    text-decoration: none;
+}
+
+.navigation a:hover{
+    border-bottom: 2px $color-secondary solid;
+    width: 50%;
+
+}
+
+.navigation__ul{
+    font-size: 3vh;
+    height: 10vh;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;   
+}
+
+.navigation__li{
+    text-decoration: none;
+    outline: none;
+    margin-right: 20px;
+    color: black;
+    font-weight: bold;
+}

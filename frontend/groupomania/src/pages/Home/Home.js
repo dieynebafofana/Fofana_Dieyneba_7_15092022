@@ -1,22 +1,22 @@
-import { useState } from 'react';
-import logo from '../../assets/icon-left-font.png';
-import './Home.css';
-
+import { useState } from "react";
+import Logo from "../../components/Logo"
+import Nav from "../../components/Nav";
+import "./Home.css";
+import "../../../src/styles/pages/index.scss"
 
 export default function Home() {
+  const [email, setEmail] = useState("");
 
-  const [email , setEmail] = useState('')
-
-  const functionTest = (e) =>{
-    e.preventDefault()
-    console.log('coucou' , email)
+  const functionTest = (e) => {
+    e.preventDefault();
+    console.log("coucou", email);
 
     const data = {
-      email : email,
-      password : "testTEST33"
-    }
+      email: email,
+      password: "testTEST33",
+    };
 
-    console.log(JSON.stringify(data))
+    console.log(JSON.stringify(data));
 
     // fetch("http://localhost:3000/api/auth/login", {
     //   method : "POST",
@@ -31,20 +31,22 @@ export default function Home() {
     // })
 
     fetch("http://localhost:3000/api/auth/signup", {
-      method : "POST",
-      headers : {
-        "Content-Type" : "application/json"
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     })
-    .then((data)=> data.json())
-    .then((UserLogin) => {
-      console.log(UserLogin)
-    })
-  }
+      .then((data) => data.json())
+      .then((UserLogin) => {
+        console.log(UserLogin);
+      });
+  };
 
   return (
     <div className="App">
+    <Logo/>
+    <Nav/>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -61,17 +63,25 @@ export default function Home() {
       </header> */}
       <section>
         <form action="">
-        <div>
-          <label htmlFor="email">email</label>
-          <input name="email" type="email" onChange={(e)=> setEmail(e.target.value)}/>
-        </div>
-        <div>
-          <label htmlFor="password">password</label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <input type="submit" value="Connexion" onClick={(e) => functionTest(e)} />
-        </div>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input
+              name="email"
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Password</label>
+            <input name="password" type="password" />
+          </div>
+          <div>
+            <input
+              type="submit"
+              value="Connexion"
+              onClick={(e) => functionTest(e)}
+            />
+          </div>
         </form>
       </section>
     </div>
