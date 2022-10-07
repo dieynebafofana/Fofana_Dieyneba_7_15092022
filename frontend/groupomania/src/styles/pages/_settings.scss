@@ -1,11 +1,11 @@
 // ecrire la font-face, les couleurs, les mixins etc..
 
 /*Variables*/
-$color-primary:  #FD2D01;
-$color-secondary: #FFD7D7;
-$color-tertiary: #4E5166;
+$color-primary: #fd2d01;
+$color-secondary: #ffd7d7;
+$color-tertiary: #4e5166;
 
-#root{
-    height: 800px;
-    background-image:linear-gradient(to top, $color-tertiary, $color-secondary);
+#root {
+  height: 800px;
+  background-image: linear-gradient(to top, $color-tertiary, $color-secondary);
 }
