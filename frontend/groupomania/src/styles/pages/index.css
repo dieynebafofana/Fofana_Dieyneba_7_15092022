@@ -1,0 +1,78 @@
+/*Variables*/
+#root {
+  height: 800px;
+  background-image: linear-gradient(to top, #4e5166, #ffd7d7);
+}
+
+.logo {
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  width: 50vh;
+  height: 50vh;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  border-bottom: 3px black solid;
+}
+
+.navigation a {
+  text-decoration: none;
+}
+
+.navigation a:hover {
+  border-bottom: 3px black solid;
+  width: 45%;
+}
+
+.navigation__ul {
+  font-size: 3vh;
+  height: 10vh;
+  margin-right: 10px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navigation__li {
+  text-decoration: none;
+  outline: none;
+  margin-right: 20px;
+  color: black;
+  font-weight: bold;
+}
+
+.App {
+  text-align: center;
+}
+
+form {
+  padding-top: 10vh;
+  font-size: 3vh;
+  font-weight: bold;
+}
+
+input {
+  height: 3vh;
+}
+
+.Home__button {
+  font-size: 3vh;
+  font-weight: bold;
+  margin-top: 5vh;
+  height: 5vh;
+  border: 2px;
+  border-radius: 15px;
+  padding: 5px;
+}/*# sourceMappingURL=index.css.map */

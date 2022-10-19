@@ -3,10 +3,12 @@ import { useState } from "react";
 import Logo from "../components/Logo";
 import Nav from "../components/Nav";
 import "../../src/styles/pages/index.scss";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const Navigate = useNavigate();
 
   const functionSignup = (e) => {
     e.preventDefault();
@@ -25,8 +27,8 @@ const Signup = () => {
       .then((data) => data.json())
       .then((UserLogin) => {
         console.log(UserLogin);
+        Navigate("/Login");
       });
-    // window.location.href = "Login";
   };
   return (
     <div className="App">

@@ -1,23 +1,22 @@
-import React from "react";
 import { useState } from "react";
 import Logo from "../components/Logo";
 import Nav from "../components/Nav";
 import "../../src/styles/pages/index.scss";
-
+import { useNavigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const Navigate = useNavigate();
 
-  const functionLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
       email: email,
       password: password,
     };
-
-    // const EmailError = document.querySelector(".EmailError");
-    // const PasswordError = document.querySelector(".PasswordError");
 
     fetch("http://localhost:3000/api/auth/login", {
       method: "POST",
@@ -28,37 +27,37 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        setEmail("");
-        setPassword("");
         console.log(res);
         const token = res.token;
-        localStorage.setItem("token", token);
-        // window.location.href = "Post";
-        // if (setEmail && setPassword === "") {
-        //   EmailError.innerHTML = `Veuillez saisir une adresse mail`;
-        //   PasswordError.innerHTML = `Veuillez saisir un mot de passe`;
-          
-          
-        // }
+        if (token) {
+          // setError(null);
+          console.log(token);
+          localStorage.setItem("token", token);
+          Navigate("/post")
+          window.location.href = "Post";
+        } else {
+          if (!res.ok) {
+            // setError(res.message);
+            alert("veuillez saisir une adresse et un mot de passe valide");
+          }
+        }
       })
-      .catch((error) => {
-        console.log(error);   
+      .catch((err) => {
+        console.log(err);
+        //C'est ici que nous récuorer notre erruer et ici qu'on écrir le code pour l'afficher
+        // if(error.message){
+        setError(true);
+        // }
       });
-    
   };
-  // function ErrorLogin(){
 
-  //   if(email === ""){
-  //     alert("Veuillez saisir une adresse mail")
-  //     console.log(ErrorLogin)
-  //   }
-  // }
   return (
     <div className="App">
       <Logo />
       <Nav />
       <section>
-        <form action="" onSubmit={functionLogin}>
+        <form action="" onSubmit={handleSubmit}>
+          {error && <span>{error}</span>}
           <div>
             <label htmlFor="email">Email</label>
             <input
@@ -66,7 +65,6 @@ const Login = () => {
               type="email"
               onChange={(e) => setEmail(e.target.value)}
             />
-            <div className="EmailError"></div>
           </div>
           <div>
             <label htmlFor="password">Password</label>
@@ -75,15 +73,11 @@ const Login = () => {
               type="password"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <div className="PasswordError"></div>
           </div>
           <div>
-            <input
-              className="Home__button"
-              type="submit"
-              value="Connexion"
-              onClick={(e) => functionLogin(e)}
-            />
+            <button className="Home__button" type="submit" value="Connexion">
+              Connexion
+            </button>
           </div>
         </form>
       </section>
