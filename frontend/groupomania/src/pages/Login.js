@@ -3,12 +3,14 @@ import Logo from "../components/Logo";
 import Nav from "../components/Nav";
 import "../../src/styles/pages/index.scss";
 import { useNavigate } from "react-router-dom";
+import Button from "../components/UI/Button";
 // import { Navigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [isLoading, setIsloading] = useState(false);
   const Navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -30,25 +32,22 @@ const Login = () => {
         console.log(res);
         const token = res.token;
         if (token) {
-          // setError(null);
           console.log(token);
           localStorage.setItem("token", token);
-          Navigate("/post")
-          window.location.href = "Post";
+          setIsloading(true);
+          Navigate("/post");
         } else {
           if (!res.ok) {
-            // setError(res.message);
-            alert("veuillez saisir une adresse et un mot de passe valide");
+            // alert('veuillez saisir une adresse mail et un mot de passe valide')
+            setError(res.message);
           }
         }
       })
       .catch((err) => {
         console.log(err);
         //C'est ici que nous récuorer notre erruer et ici qu'on écrir le code pour l'afficher
-        // if(error.message){
-        setError(true);
-        // }
       });
+    setIsloading(true);
   };
 
   return (
@@ -57,8 +56,7 @@ const Login = () => {
       <Nav />
       <section>
         <form action="" onSubmit={handleSubmit}>
-          {error && <span>{error}</span>}
-          <div>
+          <div className="FormInput">
             <label htmlFor="email">Email</label>
             <input
               name="email"
@@ -66,7 +64,7 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div>
+          <div className="FormInput">
             <label htmlFor="password">Password</label>
             <input
               name="password"
@@ -74,10 +72,18 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          {<span>{error}</span>}
           <div>
-            <button className="Home__button" type="submit" value="Connexion">
-              Connexion
-            </button>
+            {!isLoading && (
+              <Button
+                className={"btnConnexion"}
+                type={"submit"}
+                value={"connexion"}
+              >
+                Connexion
+              </Button>
+            )}
+            {isLoading && <div> En cours de chargement</div>}
           </div>
         </form>
       </section>

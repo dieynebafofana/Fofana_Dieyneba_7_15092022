@@ -1,0 +1,13 @@
+.FormPost{
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    justify-content: space-between;
+}
+
+.InputMessage{
+    height: 8vh;
+    border-radius: 15rem;
+}

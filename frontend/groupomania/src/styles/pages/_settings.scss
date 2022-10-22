@@ -1,11 +1,19 @@
 // ecrire la font-face, les couleurs, les mixins etc..
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap');
 
 /*Variables*/
 $color-primary: #fd2d01;
 $color-secondary: #ffd7d7;
 $color-tertiary: #4e5166;
 
+$font : 'Lato', 'sans sérif';
+
 #root {
   height: 800px;
   background-image: linear-gradient(to top, $color-tertiary, $color-secondary);
+}
+
+body{
+  font-family: $font;
+  box-sizing: border-box;
 }

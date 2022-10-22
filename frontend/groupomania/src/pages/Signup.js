@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [newUser, setNewUser] = useState("");
+  const [error, setError] = useState(null);
   const Navigate = useNavigate();
 
   const functionSignup = (e) => {
@@ -26,8 +28,16 @@ const Signup = () => {
     })
       .then((data) => data.json())
       .then((UserLogin) => {
-        console.log(UserLogin);
+        setNewUser(UserLogin.message);
+
+        if (!data.ok) {
+          setError(UserLogin.error);
+        }
+
         Navigate("/Login");
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
   return (
@@ -36,32 +46,29 @@ const Signup = () => {
       <Nav />
 
       <section>
-        <form action="">
-          <div>
+        <form action="" onSubmit={functionSignup}>
+          <div className="FormInput">
             <label htmlFor="email">Email</label>
             <input
               name="email"
               type="email"
               onChange={(e) => setEmail(e.target.value)}
             />
-            <p id="ErrorEmail"></p>
           </div>
-          <div>
+          <div className="FormInput">
             <label htmlFor="password">Password</label>
             <input
               name="password"
               type="password"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <p id="ErrorPassword"></p>
           </div>
+          {newUser}
+          {<span>{error}</span>}
           <div>
-            <input
-              className="Home__button"
-              type="submit"
-              value="Connexion"
-              onClick={(e) => functionSignup(e)}
-            />
+            <button className="btnConnexion" type="submit" value="Connexion">
+              Signup
+            </button>
           </div>
         </form>
       </section>
