@@ -6,10 +6,10 @@ const Nav = () => {
     <div className="navigation">
       <ul className="navigation__ul">
         <NavLink to="/Signup">
-          <li className="navigation__li">Signup</li>
+          <li className="navigation__li">S'inscrire</li>
         </NavLink>
         <NavLink to="/Login">
-          <li className="navigation__li">Login</li>
+          <li className="navigation__li">Se connecter</li>
         </NavLink>
       </ul>
     </div>

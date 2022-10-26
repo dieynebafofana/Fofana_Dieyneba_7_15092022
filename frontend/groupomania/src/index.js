@@ -10,14 +10,18 @@ import Signup from "./pages/Signup";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+  
+  <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Login />} />
         <Route exact path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/post" element={<Post />} />
         <Route path="*" element={<Error />} />
+     
       </Routes>
     </BrowserRouter>
+ 
+    
   </React.StrictMode>
 );

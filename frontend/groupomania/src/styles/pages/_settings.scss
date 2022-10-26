@@ -10,10 +10,11 @@ $font : 'Lato', 'sans sérif';
 
 #root {
   height: 800px;
-  background-image: linear-gradient(to top, $color-tertiary, $color-secondary);
+  
 }
 
 body{
   font-family: $font;
   box-sizing: border-box;
+  background-image: linear-gradient(to top, $color-tertiary, $color-secondary);
 }

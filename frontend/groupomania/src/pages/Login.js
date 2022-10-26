@@ -4,13 +4,13 @@ import Nav from "../components/Nav";
 import "../../src/styles/pages/index.scss";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/UI/Button";
-// import { Navigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [isLoading, setIsloading] = useState(false);
+  // const [islogin setIslogin] = useState(true);
   const Navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -34,18 +34,18 @@ const Login = () => {
         if (token) {
           console.log(token);
           localStorage.setItem("token", token);
+
           setIsloading(true);
           Navigate("/post");
         } else {
           if (!res.ok) {
-            // alert('veuillez saisir une adresse mail et un mot de passe valide')
             setError(res.message);
+            setIsloading(false);
           }
         }
       })
       .catch((err) => {
         console.log(err);
-        //C'est ici que nous récuorer notre erruer et ici qu'on écrir le code pour l'afficher
       });
     setIsloading(true);
   };
@@ -55,9 +55,10 @@ const Login = () => {
       <Logo />
       <Nav />
       <section>
+        <h1>Se connecter</h1>
         <form action="" onSubmit={handleSubmit}>
           <div className="FormInput">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Entrée une adresse email</label>
             <input
               name="email"
               type="email"
@@ -65,7 +66,7 @@ const Login = () => {
             />
           </div>
           <div className="FormInput">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Entrée un mot de passe</label>
             <input
               name="password"
               type="password"
@@ -80,7 +81,7 @@ const Login = () => {
                 type={"submit"}
                 value={"connexion"}
               >
-                Connexion
+                Se connecter
               </Button>
             )}
             {isLoading && <div> En cours de chargement</div>}

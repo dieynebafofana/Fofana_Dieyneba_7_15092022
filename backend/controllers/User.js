@@ -30,7 +30,7 @@ exports.login = (req, res, next) => {
       if (!user) {
         return res
           .status(400)
-          .json({ message: "Paire login/mot de passe incorrecte" });
+          .json({ message: "Email ou mot de passe incorrecte" });
       }
       bcrypt
         .compare(req.body.password, user.password)
@@ -38,7 +38,7 @@ exports.login = (req, res, next) => {
           if (!valid) {
             return res
               .status(400)
-              .json({ message: "Paire login/mot de passe incorrecte" });
+              .json({ message: "Email ou mot de passe incorrect" });
           }
           res.status(200).json({
             userId: user._id,

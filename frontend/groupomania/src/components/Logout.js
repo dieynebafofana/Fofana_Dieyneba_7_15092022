@@ -7,7 +7,7 @@ const Logout = () => {
         <div className='navigation'>
            <ul className="navigation__ul">
            <NavLink to="/Login">
-          <li className=" navigation__li">Logout</li>
+          <li className=" navigation__li">Se deconnecter</li>
         </NavLink>
         </ul>
         </div>
