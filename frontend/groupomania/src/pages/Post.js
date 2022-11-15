@@ -1,66 +1,130 @@
 // import React, { useState } from "react";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Logo from "../components/Logo";
 import Logout from "../components/Logout";
 import AuthContext from "../Store/AuthContext";
+import Button from "../components/UI/Button";
+import { useNavigate } from "react-router-dom";
 
 const Post = () => {
   //post useState (future data)
-  // const [post, setPost] = useState(true)
+  // const [posts, setPosts] = useState([])
+  const [post, setPost] = useState(null);
+console.log(post)
   //loading useState(true) (future data)
-// const [loading, setLoading] = useState (true)
-  // const token Récupere le token du localStorage
-// const tokenLocalstorage = localStorage.getItem("token")
+  // const [loading, setLoading] = useState (true)
+
+  const AuthCtxt = useContext(AuthContext);
+
+  const Navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.prenventDefault();
+
+    //Fonction fetchAddPost
+    // fetchAddPosts()
+  };
   // useEffect([token]) (if not token reidrection vers login)
-const AuthCtxt = useContext(AuthContext)
+  useEffect(() => {
+    if (!AuthCtxt.token) {
+      Navigate("/Login");
+    }
 
-  //useEffect
-    fetch("http://localhost:3000/api/posts", {
-      method: "GET",
+    //Lancer fonction pour aller charger les posts fetchGetPosts()
+  });
 
+  // const fetchGetPosts = () =>{
+  //   //Fetch get
+  //     //Data (setPosts) (setLoadding false)
+  // }
+
+  const fetchAddPosts = () => {
+
+    fetch("http://localhost:3000/api/Posts", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
-
         Autorisation: `Bearer ${AuthCtxt.token}`,
-      
       },
-      body: JSON.stringify({userId:AuthCtxt.userId}),
+      body: JSON.stringify({
+        userId: AuthCtxt.userId,
+        post: post,
+      }),
     })
       .then((data) => data.json())
       .then((Posts) => {
         console.log(Posts);
-      
-        
-        //setPost
-        //setLoading(false)
+        if (Posts.ok) {
+          setPost(Posts);
+        }
+        //Lancer fonction FetchGetPost
+
+        // setPost(true)
+        // setLoading(false)
       })
       .catch((err) => {
-        // console.log(err);
-        //Redirection vers login
+        console.log(err);
       });
-    //End useEffect ([post, loading, token])
+  };   
+
+  useEffect(() => {
+    fetchAddPosts();
+  },[]);
+  // //useEffect
+  //   fetch("http://localhost:3000/api/Posts", {
+  //     method: "POST",
+
+  //     headers: {
+  //       "Content-Type": "application/json",
+
+  //       Autorisation: `Bearer ${AuthCtxt.token}`,
+
+  //     },
+  //     body: JSON.stringify({
+  //       userId: AuthCtxt.userId,
+  //       post:post}),
+  //   })
+  //     .then((data) => data.json())
+  //     .then((Posts) => {
+  //       console.log(Posts);
+
+  //       setPost(true)
+  //       setLoading(false)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  //     useEffect(() => {
+
+  //     },[])
+  //   //End useEffect ([post, loading, token])
 
   return (
     <div>
       <Logo />
       <Logout />
       <section>
-        <form className="FormPost">
-        <label htmlFor="message">
-          <input className="InputMessage"
-            name="message"
-            type="texterea"
-            min="1"
-            max="300"
-          /> 
-        </label>
-        {/* <button>Envoyer</button> */}
+        <form
+          className="FormPost"
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+        >
+          <label htmlFor="message">
+            <input
+              className="InputMessage"
+              name="message"
+              placeholder="Ecrire un message"
+              type="texterea"
+              defaultValue={post}
+              onChange={(e) => setPost(e.target.value)}
+            />
+          </label>
+          {/* <input type="submit" value="Envoyer" /> */}
+          <Button type="submit">Envoyer</Button>
         </form>
-        <div>
 
-        {/* loading ? loading... : Afficher les posts */}
-          
-        </div>
+        <div>{/* { loading ? "loading..." : "Afficher les posts" } */}</div>
       </section>
     </div>
   );

@@ -36,7 +36,7 @@ const Login = () => {
           localStorage.setItem("token", token);
 
           setIsloading(true);
-          Navigate("/post");
+          Navigate("/Post");
         } else {
           if (!res.ok) {
             setError(res.message);
