@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 const defaultValue = {
   token: "",
   userId: null,
-  userIsloggedin: true,
+  userIsloggedin: false,
   login: () => {},
   logout: () => {},
 };

@@ -1,13 +1,57 @@
+// .FormInput{
+//     height: 10vh;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     font-weight: bold;
+//     justify-content: space-between;
+// }
 .FormPost{
-    height: 10vh;
+    height: 20vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    font-weight: bold;
-    justify-content: space-between;
+    justify-content: center;
+    box-sizing: border-box;
+  border: 15px gray;
+
+
 }
 
-.InputMessage{
-    height: 8vh;
+.FormInputPost{
+    height: 12vh;
+    width:30rem;
     border-radius: 15rem;
+    font-weight: bold;
+    
+}
+
+.FormBtn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 2rem;
+    font-size: 3vh;
+    font-weight: bold;
+}
+
+.PostRender{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+   
+   
+}
+.PostRenderMessage{
+
+border:2px solid  #ffd7d7;
+border-radius: 45px;
+padding: 45px;
+width: 25rem;
+background-color: white;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 }
