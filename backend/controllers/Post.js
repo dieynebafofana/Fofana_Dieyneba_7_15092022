@@ -9,23 +9,26 @@ exports.AllPosts = (req, res, next) => {
 };
 
 exports.AddPost = (req, res, next) => {
-  console.log(req.body)
+  console.log(req.body);
   const { message } = req.body;
   const userId = req.auth.userId;
-  
+
   const newPost = new Post({
     userId,
     message,
-    imageUrl : "NULL"
-    // imageUrl: `${req.protocol}://${req.get("host")}/images/${
-    //   req.file.filename
-    // }`,
+    // imageUrl: "NULL",
+    imageUrl: `${req.protocol}://${req.get("host")}/images/${
+      req.file.filename
+    }`,
   });
-  // console.log(newPost);
+  console.log(newPost);
 
-  newPost.save()
+  newPost
+    .save()
     .then((Post) => res.status(200).json({ message: "post envoyé" }))
-    .catch((error) => res.status(400).json({ message: "Erreur message" , error : error }));
+    .catch((error) =>
+      res.status(400).json({ message: "Erreur message", error: error })
+    );
 };
 
 exports.PostId = (req, res, next) => {

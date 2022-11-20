@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useContext, useState } from "react";
 import AuthContext from "../Store/AuthContext";
+import AddPostImg from "./AddPostImg";
 
 const AllPost = (PostOnUpdate) => {
   const AuthCtxt = useContext(AuthContext);
@@ -11,7 +12,7 @@ const AllPost = (PostOnUpdate) => {
       method: "GET",
       headers: {
         Authorization: `Bearer ${AuthCtxt.token}`,
-      }
+      },
     })
       .then((data) => data.json())
       .then((Posts) => {
@@ -23,15 +24,22 @@ const AllPost = (PostOnUpdate) => {
       .catch((error) => {
         console.log(error);
       });
-  }
-  
-  useEffect(()=> {
-    FetchPost()
-  },[PostOnUpdate])
+  };
+
+  useEffect(() => {
+    FetchPost();
+  }, [PostOnUpdate]);
   return (
     <div>
-    <section className="PostRender" >
-      {messages && messages.map((message) => (<p className="PostRenderMessage" key={`${message._id}`}>{message.message}</p>))}
+      <section className="PostRender">
+        {messages &&
+          messages.map((message) => (
+            <p className="PostRenderMessage" key={`${message._id}`}>
+            <AddPostImg imageUrl= {message.imageUrl}/>
+              {message.message}
+            </p>
+          
+          ))}
       </section>
     </div>
   );

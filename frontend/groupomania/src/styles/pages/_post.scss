@@ -9,21 +9,20 @@
 .FormPost{
     height: 20vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-  border: 15px gray;
-
-
+    justify-content: center;    
 }
 
 .FormInputPost{
     height: 12vh;
-    width:30rem;
+    width:36rem;
+    margin-bottom: 6px;
     border-radius: 15rem;
+    font-size: 20px;
     font-weight: bold;
-    
+    border: 15px gray;
+    box-shadow: 0px 0px 0px 25px gray;
 }
 
 .FormBtn{
@@ -46,9 +45,9 @@
 .PostRenderMessage{
 
 border:2px solid  #ffd7d7;
-border-radius: 45px;
+border-radius: 55px;
 padding: 45px;
-width: 25rem;
+width: 33rem;
 background-color: white;
 display: flex;
 flex-direction: column;

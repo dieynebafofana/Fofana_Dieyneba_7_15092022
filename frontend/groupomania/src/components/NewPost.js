@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import AuthContext from "../Store/AuthContext";
+// import AddPostImg from "./AddPostImg";
+
 import Button from "./UI/Button";
 
-const Post = ({PostOnUpdate}) => {
+const Post = ({ PostOnUpdate }) => {
   const [message, setMessage] = useState(null);
   const AuthCtxt = useContext(AuthContext);
 
@@ -13,23 +15,24 @@ const Post = ({PostOnUpdate}) => {
     const formData = new FormData();
     formData.append("message", message);
 
-    const data = { message: message };
-    console.log(data, JSON.stringify(data));
+    // const data = { message: message };
+    // console.log(data, JSON.stringify(data));
 
     fetch("http://localhost:3000/api/posts", {
       method: "POST",
       headers: {
         // "Content-Type": "multipart/form-data",
-        "Content-Type": "application/json",
+        // "Content-Type": "application/json",
         Authorization: `Bearer ${AuthCtxt.token}`,
       },
-      body: JSON.stringify(data),
-      // body : formData,
+      // body: JSON.stringify(data),
+      body : formData,
     })
-      .then((data) => data.json())
+      // .then((data) => data.json())
       .then((Post) => {
         console.log(Post);
-        PostOnUpdate(message)
+        setMessage("");
+        PostOnUpdate(message);
       })
       .catch((error) => {
         console.log(error);
@@ -51,12 +54,15 @@ const Post = ({PostOnUpdate}) => {
               name="message"
               placeholder="Ecrire un message"
               type="texterea"
-              defaultValue={message}
+              value={message ? message : ""}
               onChange={(e) => setMessage(e.target.value)}
             />
+            {/* <AddPostImg/> */}
           </label>
 
-          <Button className=" FormPost FormBtn" type="submit">Envoyer</Button>
+          <Button className=" FormPost FormBtn" type="submit">
+            Envoyer
+          </Button>
         </form>
 
         <div></div>
