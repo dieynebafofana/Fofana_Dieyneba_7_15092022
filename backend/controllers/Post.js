@@ -12,14 +12,14 @@ exports.AddPost = (req, res, next) => {
   console.log(req.body);
   const { message } = req.body;
   const userId = req.auth.userId;
-
+const {image} =`${req.protocol}://${req.get("host")}/images/${
+  req.file.filename
+}`
   const newPost = new Post({
     userId,
     message,
-    // imageUrl: "NULL",
-    imageUrl: `${req.protocol}://${req.get("host")}/images/${
-      req.file.filename
-    }`,
+    // imageUrl: "NULL,
+    image 
   });
   console.log(newPost);
 

@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useContext, useState } from "react";
 import AuthContext from "../Store/AuthContext";
 import AddPostImg from "./AddPostImg";
+import BtnPost from "./BtnPost";
+import ImgProfil from "./ImgProfil";
 
 const AllPost = (PostOnUpdate) => {
   const AuthCtxt = useContext(AuthContext);
@@ -35,8 +37,10 @@ const AllPost = (PostOnUpdate) => {
         {messages &&
           messages.map((message) => (
             <p className="PostRenderMessage" key={`${message._id}`}>
+            <ImgProfil/> {message.userId}
             <AddPostImg imageUrl= {message.imageUrl}/>
               {message.message}
+              <BtnPost/>
             </p>
           
           ))}

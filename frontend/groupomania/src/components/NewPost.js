@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import AuthContext from "../Store/AuthContext";
+import LogoUpload from "./LogoUpload";
+
 // import AddPostImg from "./AddPostImg";
 
 import Button from "./UI/Button";
@@ -21,12 +23,12 @@ const Post = ({ PostOnUpdate }) => {
     fetch("http://localhost:3000/api/posts", {
       method: "POST",
       headers: {
-        // "Content-Type": "multipart/form-data",
+        "Content-Type": "multipart/form-data",
         // "Content-Type": "application/json",
         Authorization: `Bearer ${AuthCtxt.token}`,
       },
       // body: JSON.stringify(data),
-      body : formData,
+      body: formData,
     })
       // .then((data) => data.json())
       .then((Post) => {
@@ -44,25 +46,30 @@ const Post = ({ PostOnUpdate }) => {
       <section>
         <form
           className="FormPost"
+          encType="multipart/form-data"
           onSubmit={(e) => {
             handleSubmit(e);
           }}
         >
           <label htmlFor="message">
             <input
-              className="FormPost FormInputPost"
+              className=" FormInputPost"
               name="message"
               placeholder="Ecrire un message"
               type="texterea"
               value={message ? message : ""}
               onChange={(e) => setMessage(e.target.value)}
             />
-            {/* <AddPostImg/> */}
           </label>
-
-          <Button className=" FormPost FormBtn" type="submit">
-            Envoyer
-          </Button>
+          <div className=" FormPost FormBtnUpload">
+          <div className=" FormBtnUpload">
+            <LogoUpload /></div>
+            <div>
+            <Button className=" FormBtnUpload FormBtn" type="submit">
+              Envoyer
+            </Button>
+            </div>
+          </div>
         </form>
 
         <div></div>
