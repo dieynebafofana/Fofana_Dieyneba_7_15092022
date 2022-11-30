@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Logo from "../components/Logo";
 import Nav from "../components/Nav";
 import "../../src/styles/pages/index.scss";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/UI/Button";
+import AuthContext from "../Store/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +13,7 @@ const Login = () => {
   const [isLoading, setIsloading] = useState(false);
   // const [islogin setIslogin] = useState(true);
   const Navigate = useNavigate();
+  const AuthCtxt = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,10 +33,12 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         const token = res.token;
+        const userId = res.userId;
         if (token) {
-          console.log(token);
-          localStorage.setItem("token", token);
-
+          // console.log(token);
+          // localStorage.setItem("token", token);
+          AuthCtxt.login(token, userId);
+          console.log(AuthCtxt.login);
           setIsloading(true);
           Navigate("/Post");
         } else {

@@ -1,40 +1,39 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import AuthContext from "../Store/AuthContext";
-import LogoUpload from "./LogoUpload";
+// import LogoUpload from "./LogoUpload";
 
 // import AddPostImg from "./AddPostImg";
 
 import Button from "./UI/Button";
 
-const Post = ({ PostOnUpdate }) => {
+const PostForm = ({ PostOnUpdate }) => {
   const [message, setMessage] = useState(null);
+  const [image, setImage] = useState(null);
   const AuthCtxt = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    console.log(image, image.filename);
+
     const formData = new FormData();
     formData.append("message", message);
-
-    // const data = { message: message };
-    // console.log(data, JSON.stringify(data));
+    formData.append("image", image);
 
     fetch("http://localhost:3000/api/posts", {
       method: "POST",
       headers: {
-        "Content-Type": "multipart/form-data",
-        // "Content-Type": "application/json",
         Authorization: `Bearer ${AuthCtxt.token}`,
       },
-      // body: JSON.stringify(data),
       body: formData,
     })
-      // .then((data) => data.json())
+      .then((data) => data.json())
       .then((Post) => {
         console.log(Post);
         setMessage("");
-        PostOnUpdate(message);
+        setImage("");
+        PostOnUpdate();
       })
       .catch((error) => {
         console.log(error);
@@ -45,37 +44,50 @@ const Post = ({ PostOnUpdate }) => {
     <div>
       <section>
         <form
-          className="FormPost"
+          action="/upload"
+          className="FormPost "
           encType="multipart/form-data"
+          method="post"
           onSubmit={(e) => {
             handleSubmit(e);
           }}
         >
-          <label htmlFor="message">
+          <div className=" FormInputPost">
+            <div>
+              <div className="ImgUpload">
+                <img
+                  className="Image"
+                  src="./upload-solid.svg"
+                  alt="Logo upload"
+                />
+                <div>
+                  <input
+                    className="ImgUploadFile"
+                    name="image"
+                    type="file"
+                    onChange={(e) => setImage(e.target.files[0])}
+                  />
+                </div>
+              </div>
+            </div>
+
             <input
-              className=" FormInputPost"
               name="message"
+              className="InputMessage"
               placeholder="Ecrire un message"
               type="texterea"
+              // encType="multipart/form-data"
               value={message ? message : ""}
               onChange={(e) => setMessage(e.target.value)}
             />
-          </label>
-          <div className=" FormPost FormBtnUpload">
-          <div className=" FormBtnUpload">
-            <LogoUpload /></div>
-            <div>
-            <Button className=" FormBtnUpload FormBtn" type="submit">
-              Envoyer
-            </Button>
+            <div className="FormBtn">
+              <Button type="submit">Envoyer</Button>
             </div>
           </div>
         </form>
-
-        <div></div>
       </section>
     </div>
   );
 };
 
-export default Post;
+export default PostForm;

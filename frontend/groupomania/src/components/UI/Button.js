@@ -3,9 +3,14 @@ import React from "react";
 const Button = (props) => {
   return (
     <div>
-      <button className="btnConnexion"
-       type={props.type} 
-       value={props.value}>
+      <button
+        className="btnConnexion "
+        id={props.id}
+        type={props.type}
+        onClick={props.onClick}
+        value={props.value}
+        Deleteonupdate={props.Deleteonudate}
+      >
         {props.children}
       </button>
     </div>

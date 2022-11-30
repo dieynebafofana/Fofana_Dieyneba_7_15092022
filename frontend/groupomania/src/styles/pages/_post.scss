@@ -7,32 +7,35 @@
 //     justify-content: space-between;
 // }
 .FormPost {
-  height: 20vh;
+  height: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+  // border: 15px gray;
+  // box-shadow: 0px 0px 0px 25px gray;
 }
 
-.FormInputPost {
-  height: 12vh;
+.FormInputPost .InputMessage{
+  height: 8rem;
   width: 36rem;
-  margin-bottom: 6px;
+  margin-bottom: 5rem;
   border-radius: 15rem;
   font-size: 20px;
   font-weight: bold;
   border: 15px gray;
-  box-shadow: 0px 0px 0px 25px gray;
+  box-shadow: 0px 0px 0px 25px gray; 
 }
 
-.FormBtn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-left: 2rem;
-  font-size: 3vh;
-  font-weight: bold;
+.FormBtn{
+
+position: absolute;
+top:11rem;
+left: 31rem;
+
 }
+
 
 .PostRender {
   display: flex;
@@ -43,35 +46,44 @@
 .PostRenderMessage {
   border: 2px solid #ffd7d7;
   border-radius: 55px;
-  padding: 45px;
-  width: 33rem;
+  padding: 10px;
+  width: 35rem;
   background-color: white;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
-.FormBtnUpload {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 20%;
-}
+
 
 .BtnPost {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin-top: 2rem;
+ 
+  
 }
 
-.BtnPost :nth-child(1){
-color: $color-primary;
+.BtnPost Button{
+  color: $color-primary;
+}
+
+.ImgProfil{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+
 }
 
 .ImgProfil img{
-    height: 2rem;
+   height: 2rem;
+   width: 10%;
+   margin-top: 2rem;
+   margin-right: 1rem;
+   border: 2px solid black;
+   border-radius: 35px;
+   padding: 7px 7px 7px 7px;
+
 }

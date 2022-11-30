@@ -1,28 +1,52 @@
-
-import { useState } from "react";
-import AllPost from "../components/AllPost";
+import React, { useEffect } from "react";
+import { useContext, useState } from "react";
+import AuthContext from "../Store/AuthContext";
+// import AddPostImg from "./AddPostImg";
+// import BtnPost from "./BtnPost";
+// import ImgProfil from "./ImgProfil";
+// import AllPost from "../components/AllPost";
 import Logo from "../components/Logo";
 import Logout from "../components/Logout";
-import NewPost from "../components/NewPost";
-
+import PostForm from "../components/PostForm";
+import PostComponent from "../components/Post";
 
 const Post = () => {
+  const AuthCtxt = useContext(AuthContext);
+  const [posts, setPosts] = useState(null);
 
-const [message, setMessage] = useState(null)
+  const FetchPosts = () => {
+    fetch("http://localhost:3000/api/posts", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${AuthCtxt.token}`,
+      },
+    })
+      .then((data) => data.json())
+      .then((Posts) => {
+        console.log(Posts);
+        if (!Posts.ok) {
+          setPosts(Posts);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-const PostOnUpdate = (message) => {
-  const postUpdate = message;
-  setMessage(postUpdate);
-}
- 
+  useEffect(() => {
+    FetchPosts();
+  }, []);
 
   return (
     <div>
       <Logo />
       <Logout />
       {/* {!Isloggedin && <p>Vous n'etes pas connectée</p> } */}
-      <NewPost PostOnUpdate={PostOnUpdate}/>
-      <AllPost PostOnUpdate={message}/>
+      <PostForm PostOnUpdate={FetchPosts} />
+      <section className="PostRender">
+        {posts &&
+          posts.map((post) => <PostComponent Post={post}></PostComponent>)}
+      </section>
     </div>
   );
 };

@@ -1,14 +1,10 @@
 import React from "react";
 
-const AddPostImg = ({ imageUrl }) => {
+const AddPostImg = ({ image }) => {
   return (
-    (
-      <div className="ImgPost">
-      
-      <img src={imageUrl} alt=""/>
-      </div>
-    )
-
+    <div className="ImgPost">
+      <img src={image} alt="" />
+    </div>
   );
 };
 

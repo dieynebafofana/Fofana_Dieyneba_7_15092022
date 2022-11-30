@@ -10,8 +10,40 @@
 img{
     width: 50vh;
     height: 50vh;
+   
+}
+
+.ImgPost{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.ImgPost img{
+    object-fit: cover;
+    height: 40vh;
+    
 }
 
 .ImgUpload img {
     height: 2rem;
+}
+
+.ImgUpload {
+    position: absolute;
+    top:6rem;
+    right: 11rem;
+}
+
+.Image{
+    position: absolute;
+    right:1rem;
+    top: 0rem
+}
+
+.ImgUploadFile{
+    position: relative;
+    left: 2rem;
+    width: 14%;
+    opacity:0 ;
 }

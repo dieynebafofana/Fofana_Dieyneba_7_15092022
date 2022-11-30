@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 const defaultValue = {
   token: "",
-  userId: null,
+  userId: 0,
   userIsloggedin: false,
   login: () => {},
   logout: () => {},
@@ -17,7 +17,7 @@ export const AuthContextProvider = (props) => {
   const [token, setToken] = useState(TokenStorage);
   const [userId, setUserId] = useState(userIdStorage);
 
-  const Log = (token) => {
+  const Log = (token, userId) => {
     setToken(token);
     setUserId(userId);
 
@@ -32,7 +32,7 @@ export const AuthContextProvider = (props) => {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
   };
-  
+
   const userIsloggedin = !!token;
 
   const contextValue = {
