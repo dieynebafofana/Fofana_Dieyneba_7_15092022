@@ -15,8 +15,6 @@ const PostForm = ({ PostOnUpdate }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(image, image.filename);
-
     const formData = new FormData();
     formData.append("message", message);
     formData.append("image", image);

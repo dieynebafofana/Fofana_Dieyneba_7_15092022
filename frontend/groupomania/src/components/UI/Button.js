@@ -9,7 +9,6 @@ const Button = (props) => {
         type={props.type}
         onClick={props.onClick}
         value={props.value}
-        Deleteonupdate={props.Deleteonudate}
       >
         {props.children}
       </button>

@@ -66,16 +66,24 @@ exports.ModifyPost = (req, res, next) => {
 };
 
 exports.deletePost = (req, res, next) => {
+  const userId = req.auth.userId;
+
   Post.findOne({ _id: req.params.id })
-    .then((imgObjet) => {
-      const filename = imgObjet.imageUrl.split("/images/")[1];
-      fs.unlink(`images/${filename}`, () => {
-        Post.deleteOne({ _id: req.params.id })
-          .then(() => {
-            res.status(200).json({ message: "Post supprimée !" });
-          })
-          .catch((error) => res.status(400).json({ error }));
-      });
+    .then((post) => {
+      if (post.userId === userId) {
+        const filename = post.imageUrl.split("/images/")[1];
+        fs.unlink(`images/${filename}`, () => {
+          Post.deleteOne({ _id: req.params.id })
+            .then(() => {
+              res.status(200).json({ message: "Post supprimée !" });
+            })
+            .catch((error) => res.status(400).json({ error }));
+        });
+      } else {
+        res
+          .status(400)
+          .json({ message: "L'utilisateur ne peu pas supprimer ce post" });
+      }
     })
     .catch((error) => {
       res.status(400).json({ message: "error" });

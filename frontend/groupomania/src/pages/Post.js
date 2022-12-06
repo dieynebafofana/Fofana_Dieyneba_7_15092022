@@ -45,7 +45,13 @@ const Post = () => {
       <PostForm PostOnUpdate={FetchPosts} />
       <section className="PostRender">
         {posts &&
-          posts.map((post) => <PostComponent Post={post}></PostComponent>)}
+          posts.map((post) => (
+            <PostComponent
+              Post={post}
+              FetchPosts={FetchPosts}
+              key={post._id}
+            ></PostComponent>
+          ))}
       </section>
     </div>
   );

@@ -31,14 +31,13 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         const token = res.token;
         const userId = res.userId;
         if (token) {
           // console.log(token);
           // localStorage.setItem("token", token);
           AuthCtxt.login(token, userId);
-          console.log(AuthCtxt.login);
+
           setIsloading(true);
           Navigate("/Post");
         } else {
