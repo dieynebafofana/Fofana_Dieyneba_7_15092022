@@ -17,7 +17,7 @@
   // box-shadow: 0px 0px 0px 25px gray;
 }
 
-.FormInputPost .InputMessage{
+.FormInputPost .InputMessage {
   height: 8rem;
   width: 36rem;
   margin-bottom: 5rem;
@@ -25,17 +25,14 @@
   font-size: 20px;
   font-weight: bold;
   border: 15px gray;
-  box-shadow: 0px 0px 0px 25px gray; 
+  box-shadow: 0px 0px 0px 25px gray;
 }
 
-.FormBtn{
-
-position: absolute;
-top:11rem;
-left: 31rem;
-
+.FormBtn {
+  position: absolute;
+  top: 11rem;
+  left: 31rem;
 }
-
 
 .PostRender {
   display: flex;
@@ -47,56 +44,66 @@ left: 31rem;
   border: 2px solid #ffd7d7;
   border-radius: 55px;
   padding: 10px;
-  width: 35rem;
+  width: 65%;
   background-color: white;
   display: flex;
   flex-direction: column;
 }
-
-
 
 .BtnPost {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  margin-top: 2rem;
- 
-  
+  margin-top: 5rem;
 }
 
-.BtnPost Button{
+.BtnPost Button {
   color: $color-primary;
 }
 
-.ImgProfil{
+.ImgProfil {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
   margin-bottom: 2rem;
-
 }
 
-.ImgProfil img{
-   height: 2rem;
-   width: 10%;
-   margin-top: 2rem;
-   margin-right: 1rem;
-   border: 2px solid black;
-   border-radius: 35px;
-   padding: 7px 7px 7px 7px;
-
+.ImgProfil img {
+  height: 2rem;
+  width: 10%;
+  margin-top: 2rem;
+  margin-right: 1rem;
+  border: 2px solid black;
+  border-radius: 35px;
+  padding: 7px 7px 7px 7px;
 }
 
-
-.Like-active{
-  background-color: $color-primary;
+.Like-active {
+  color: $color-primary;
 }
 
-.Icon-like{
-  height: 12rem;
-  width: 15%;
- cursor: pointer;
+.like{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.Icon-like {
+height: 4rem;
+width: 100%;
+margin-right: 2rem;
+  cursor: pointer;
+}
 
- 
+.btnLike{
+  font-size: 3vh;
+  font-weight: bold;
+  height: 3rem;
+  width: 20%;
+  border: 2px;
+  border-radius: 20px;
+  padding: 0px 40px 0px 40px;
+  box-shadow: 3px 3px 3px 3px gray;
+  cursor: pointer;
 }

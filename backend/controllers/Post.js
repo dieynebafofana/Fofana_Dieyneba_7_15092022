@@ -40,27 +40,33 @@ exports.PostId = (req, res, next) => {
 };
 
 exports.ModifyPost = (req, res, next) => {
+  // console.log(req.file);
   const editPost = req.file
     ? {
-        ...req.body,
+        message: req.body.message,
         imageUrl: `${req.protocol}://${req.get("host")}/images/${
           req.file.filename
         }`,
       }
-    : { ...req.body };
+    : { message: req.body.message };
+
+  // console.log(editPost);
 
   if (req.file) {
     Post.findOne({ _id: req.params.id })
-      .then((imgObjet) => {
-        const filename = imgObjet.imageUrl.split("/images/")[1];
+      .then((post) => {
+        // console.log(post);
+        const filename = post.imageUrl.split("/images/")[1];
         fs.unlink(`images/${filename}`, (error) => {
-          if (error) throw error;
+          if (error) {
+            res.status(500).json({ message: "error supp image Post" });
+          }
         });
       })
       .catch((error) => res.status(400).json({ message: "error Post" }));
   }
 
-  Post.updateOne({ _id: req.params.id }, { ...editPost, _id: req.params.id })
+  Post.updateOne({ _id: req.params.id }, { ...editPost })
     .then(() => res.status(200).json({ message: "Post modifiée !" }))
     .catch((error) => res.status(400).json({ error }));
 };
@@ -91,12 +97,14 @@ exports.deletePost = (req, res, next) => {
 };
 
 exports.likePost = (req, res, next) => {
-  const { like, userId } = req.body;
+  const userId = req.auth.userId;
+  const { like } = req.body;
+  console.log(req.body);
 
   Post.findOne({ _id: req.params.id })
     .then((PostLike) => {
       if (!PostLike.usersLiked.includes(userId) && like === 1) {
-        Posts.updateOne(
+        Post.updateOne(
           { _id: req.params.id },
           {
             $inc: { likes: 1 },
@@ -116,30 +124,6 @@ exports.likePost = (req, res, next) => {
           }
         )
           .then(() => res.status(200).json({ message: "pas de like" }))
-          .catch((error) => res.status(400).json({ message: "error" }));
-      }
-
-      if (!PostLike.usersDisliked.includes(userId) && like === -1) {
-        Post.updateOne(
-          { _id: req.params.id },
-          {
-            $inc: { dislikes: 1 },
-            $push: { usersDisliked: userId },
-          }
-        )
-          .then(() => res.status(200).json({ message: "dislike ajouté" }))
-          .catch((error) => res.status(400).json({ message: "error" }));
-      }
-
-      if (PostLike.usersDisliked.includes(userId) && like === 0) {
-        Posts.updateOne(
-          { _id: req.params.id },
-          {
-            $inc: { dislikes: -1 },
-            $pull: { usersDisliked: userId },
-          }
-        )
-          .then(() => res.status(200).json({ message: "pas de dislike" }))
           .catch((error) => res.status(400).json({ message: "error" }));
       }
     })

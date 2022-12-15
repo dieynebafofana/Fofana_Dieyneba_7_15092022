@@ -3,14 +3,17 @@ import Button from "./UI/Button";
 import { useContext, useState } from "react";
 import AuthContext from "../Store/AuthContext";
 import PostModify from "./PostModify";
+// import PostLike from "./PostLike";
 
 const Post = ({ Post, FetchPosts }) => {
   const AuthCtxt = useContext(AuthContext);
   const [modify, setModify] = useState(false);
-  const [like, setLike] = useState(0);
-  const [activeLike, setActiveLike] = useState(false);
-  // console.log(Delete);
-  // const IdPost = Post._id;
+  const [liked, setLiked] = useState(Post.likes);
+  console.log(Post.usersLiked.includes(AuthCtxt.userId));
+  // const [userLike, setUserLike] = useState(Post.userId);
+  const [activeLike, setActiveLike] = useState(
+    Post.usersLiked.includes(AuthCtxt.userId)
+  );
 
   const DeletePost = (post_id) => {
     // console.log("je supprime");
@@ -35,15 +38,41 @@ const Post = ({ Post, FetchPosts }) => {
     setModify(toggle);
   };
 
-  const likeUser = () => {
+  const Onlike = (e) => {
+    e.preventDefault();
     console.log("je suis dans le boutton like");
+    const data = {
+      like: activeLike ? 0 : 1,
+    };
+
+    // activeLike()
+
     if (activeLike) {
       setActiveLike(false);
-      setLike(0);
+      setLiked(liked - 1);
     } else {
       setActiveLike(true);
-      setLike(+1);
+      setLiked(liked + 1);
     }
+
+    console.log(Post._id, data);
+
+    fetch(`http://localhost:3000/api/posts/${Post._id}/like`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${AuthCtxt.token}`,
+      },
+      body: JSON.stringify(data),
+    })
+      .then((data) => data.json())
+      .then((UserLike) => {
+        console.log(UserLike);
+        FetchPosts();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -52,7 +81,13 @@ const Post = ({ Post, FetchPosts }) => {
         <img src={Post.imageUrl} alt="" />
       </div>
       {!modify && <p>{Post.message}</p>}
-      {modify && <PostModify Post={Post} setModify={setModify} />}
+      {modify && (
+        <PostModify
+          Post={Post}
+          setModify={setModify}
+          updatePosts={FetchPosts}
+        />
+      )}
 
       <div className="BtnPost">
         {AuthCtxt.userId === Post.userId && (
@@ -71,15 +106,20 @@ const Post = ({ Post, FetchPosts }) => {
             </Button>
           </>
         )}
-        <div className={activeLike ? "Like-active" : null}>
-          <img
-            className="Icon-like"
-            src="./thumbs-up-regular.svg"
-            alt="Icon like"
-            onClick={() => likeUser()}
-          />
-          {like}
-        </div>
+        {/* {liked ? Post.likes === +1 : Post.likes === -1} */}
+        <button
+          onClick={(e) => Onlike(e)}
+          className={activeLike ? "Like-active" : null}
+        >
+          <div>
+            <img
+              className="Icon-like "
+              src="./thumbs-up-regular.svg"
+              alt="Icon like"
+            />
+          </div>
+          <div>{liked}</div>
+        </button>
       </div>
       <div className="ImgProfil">
         <img src="./user-solid.svg" alt="Profil" />
