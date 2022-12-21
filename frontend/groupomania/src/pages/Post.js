@@ -1,10 +1,6 @@
 import React, { useEffect } from "react";
 import { useContext, useState } from "react";
 import AuthContext from "../Store/AuthContext";
-// import AddPostImg from "./AddPostImg";
-// import BtnPost from "./BtnPost";
-// import ImgProfil from "./ImgProfil";
-// import AllPost from "../components/AllPost";
 import Logo from "../components/Logo";
 import Logout from "../components/Logout";
 import PostForm from "../components/PostForm";
@@ -41,7 +37,6 @@ const Post = () => {
     <div>
       <Logo />
       <Logout />
-      {/* {!Isloggedin && <p>Vous n'etes pas connectée</p> } */}
       <PostForm PostOnUpdate={FetchPosts} />
       <section className="PostRender">
         {posts &&

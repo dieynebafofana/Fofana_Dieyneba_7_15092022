@@ -1,50 +1,63 @@
 .logo {
-    height: 20vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-img{
-    width: 50vh;
-    height: 50vh;
-   
+.logo img {
+  width: 80%;
+  height: 50vh;
+ object-fit: cover;
 }
 
-.ImgPost{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.ImgPost {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.ImgPost img{
-    object-fit: cover;
-    height: 45vh;
-    width: 90%;
-    
+.ImgPost img {
+  object-fit: cover;
+  height: 25vh;
+  width: 95%;
+  border-radius: 0px 15px 0px 15px;
 }
 
 .ImgUpload img {
-    height: 2rem;
+  height: 2rem;
 }
 
 .ImgUpload {
-    position: absolute;
-    top:6rem;
-    right: 11rem;
+  position: absolute;
+  top: 5rem;
+  right: 3rem;
 }
 
-.Image{
-    position: absolute;
-    right:1rem;
-    top: 0rem
+.Image {
+  position: absolute;
+  right: 1rem;
+  top: 0rem;
 }
 
-.ImgUploadFile{
-    position: relative;
-    left: 2rem;
-    width: 14%;
-    opacity:0 ;
+.ImgUploadFile {
+  position: relative;
+  left: 13rem;
+  width: 14%;
+  opacity: 0;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+ 
+    .logo img {
+        width: 65%;
+    }   
+}
+
+@media all and (min-width:1024px){
+
+    .logo img{
+        width: 55%;
+    }
 }

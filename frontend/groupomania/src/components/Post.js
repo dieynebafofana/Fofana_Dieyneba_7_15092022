@@ -1,22 +1,19 @@
-// import React, { useState } from "react";
 import Button from "./UI/Button";
 import { useContext, useState } from "react";
 import AuthContext from "../Store/AuthContext";
 import PostModify from "./PostModify";
-// import PostLike from "./PostLike";
 
 const Post = ({ Post, FetchPosts }) => {
   const AuthCtxt = useContext(AuthContext);
   const [modify, setModify] = useState(false);
   const [liked, setLiked] = useState(Post.likes);
   console.log(Post.usersLiked.includes(AuthCtxt.userId));
-  // const [userLike, setUserLike] = useState(Post.userId);
+
   const [activeLike, setActiveLike] = useState(
     Post.usersLiked.includes(AuthCtxt.userId)
   );
 
   const DeletePost = (post_id) => {
-    // console.log("je supprime");
     fetch(`http://localhost:3000/api/posts/${post_id}`, {
       method: "DELETE",
       headers: {
@@ -25,7 +22,6 @@ const Post = ({ Post, FetchPosts }) => {
     })
       .then((data) => data.json())
       .then((PostUser) => {
-        console.log(PostUser);
         FetchPosts();
       })
       .catch((error) => {
@@ -44,8 +40,6 @@ const Post = ({ Post, FetchPosts }) => {
     const data = {
       like: activeLike ? 0 : 1,
     };
-
-    // activeLike()
 
     if (activeLike) {
       setActiveLike(false);
@@ -99,15 +93,14 @@ const Post = ({ Post, FetchPosts }) => {
             >
               {modify ? "Annuler" : "Modifier"}
             </Button>
-            {/* {modify && <Button onClick={() => OnNewMessage()}>Envoyer</Button>} */}
 
             <Button className="BtnDelete" onClick={() => DeletePost(Post._id)}>
               supprimer
             </Button>
           </>
         )}
-        {/* {liked ? Post.likes === +1 : Post.likes === -1} */}
-        <button
+
+        <Button
           onClick={(e) => Onlike(e)}
           className={activeLike ? "Like-active" : null}
         >
@@ -119,7 +112,7 @@ const Post = ({ Post, FetchPosts }) => {
             />
           </div>
           <div>{liked}</div>
-        </button>
+        </Button>
       </div>
       <div className="ImgProfil">
         <img src="./user-solid.svg" alt="Profil" />

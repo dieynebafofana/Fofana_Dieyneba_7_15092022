@@ -11,7 +11,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [isLoading, setIsloading] = useState(false);
-  // const [islogin setIslogin] = useState(true);
   const Navigate = useNavigate();
   const AuthCtxt = useContext(AuthContext);
 
@@ -34,10 +33,7 @@ const Login = () => {
         const token = res.token;
         const userId = res.userId;
         if (token) {
-          // console.log(token);
-          // localStorage.setItem("token", token);
           AuthCtxt.login(token, userId);
-
           setIsloading(true);
           Navigate("/Post");
         } else {
@@ -79,11 +75,7 @@ const Login = () => {
           {<span>{error}</span>}
           <div>
             {!isLoading && (
-              <Button
-                className={"btnConnexion"}
-                type={"submit"}
-                value={"connexion"}
-              >
+              <Button className="btnLogin" type="submit" value="connexion">
                 Se connecter
               </Button>
             )}
