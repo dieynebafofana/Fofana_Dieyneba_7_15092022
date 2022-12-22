@@ -32,8 +32,10 @@ const Login = () => {
       .then((res) => {
         const token = res.token;
         const userId = res.userId;
+        const isAdmin = res.isAdmin;
         if (token) {
-          AuthCtxt.login(token, userId);
+          AuthCtxt.login(token, userId, isAdmin);
+          console.log(token, userId, isAdmin);
           setIsloading(true);
           Navigate("/Post");
         } else {

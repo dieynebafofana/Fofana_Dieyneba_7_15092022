@@ -10,7 +10,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [newUser, setNewUser] = useState("");
   const [error, setError] = useState(null);
-  
+
   const Navigate = useNavigate();
 
   const functionSignup = (e) => {
@@ -47,10 +47,9 @@ const Signup = () => {
       <Nav />
 
       <section>
-      <h1>Créer un compte</h1>
+        <h1>Créer un compte</h1>
         <form action="" onSubmit={functionSignup}>
           <div className="FormInput">
-          
             <label htmlFor="email">Veuillez saisir une adresse email</label>
             <input
               name="email"

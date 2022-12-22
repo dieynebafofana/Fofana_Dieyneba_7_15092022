@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import AuthContext from "../Store/AuthContext";
-// import LogoUpload from "./LogoUpload";
-
-// import AddPostImg from "./AddPostImg";
 
 import Button from "./UI/Button";
 
@@ -28,7 +25,6 @@ const PostForm = ({ PostOnUpdate }) => {
     })
       .then((data) => data.json())
       .then((Post) => {
-        console.log(Post);
         setMessage("");
         setImage("");
         PostOnUpdate();
@@ -74,7 +70,6 @@ const PostForm = ({ PostOnUpdate }) => {
               className="InputMessage"
               placeholder="Ecrire un message"
               type="texterea"
-              // encType="multipart/form-data"
               value={message ? message : ""}
               onChange={(e) => setMessage(e.target.value)}
             />

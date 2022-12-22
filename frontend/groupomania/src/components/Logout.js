@@ -1,17 +1,16 @@
-
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Logout = () => {
-    return (
-        <div className='navigation'>
-           <ul className="navigation__ul">
-           <NavLink to="/Login">
+  return (
+    <div className="navigation">
+      <ul className="navigation__ul">
+        <NavLink to="/Login">
           <li className=" navigation__li">Se deconnecter</li>
         </NavLink>
-        </ul>
-        </div>
-    );
+      </ul>
+    </div>
+  );
 };
 
 export default Logout;

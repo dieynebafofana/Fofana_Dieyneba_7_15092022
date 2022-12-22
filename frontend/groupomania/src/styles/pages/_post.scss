@@ -30,7 +30,6 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-
 }
 .PostRenderMessage {
   border: 2px solid #ffd7d7;
@@ -51,28 +50,34 @@
 }
 
 .BtnPost Button {
-  color: $color-primary;
+  color: black;
+  width: 86%;
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .ImgProfil {
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: flex-start;
+  justify-content: flex-start;
   margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 .ImgProfil img {
-  height: 2rem;
+  height: 1.5rem;
   width: 10%;
-  margin-top: 2rem;
-  margin-right: 1rem;
   border: 2px solid black;
   border-radius: 35px;
-  padding: 7px 7px 7px 7px;
+  padding: 5px;
 }
 
 .Like-active {
-  color: $color-primary;
+   color: $color-primary;
 }
 
 .Icon-like {
@@ -82,22 +87,112 @@
   cursor: pointer;
 }
 
-.btnLike {
-  font-size: 3vh;
-  font-weight: bold;
-  height: 3rem;
-  width: 20%;
-  border: 2px;
-  border-radius: 20px;
-  padding: 0px 40px 0px 40px;
-  box-shadow: 3px 3px 3px 3px gray;
-  cursor: pointer;
+.BtnPost btnLike {
+  color: black;
 }
 
-// @media screen and (min-width: 768px) and (max-width: 1024px) {
+.InputModify {
+  height: 12vh;
+  width: 100%;
+  margin-top: 1rem;
+  border: 2px solid black;
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .FormInputPost {
+    width: 80%;
+    height: 20vh;
+  }
 
-//   .FormInput input {
-//     width: 50%;
+  .ImgUpload {
+    right: 10rem;
+  }
+
+  .FormBtn {
+    left: 20rem;
+  }
+
+  .BtnPost Button {
+    width: 100%;
+    margin: 2rem;
+  }
+
+  .BtnSend Button {
+    width: 100%;
+    margin: 2rem;
+  }
+
+  .ImgProfil img{
+    width: 5%;
+  }
+}
+
+@media screen and (min-width:1024px) and (max-width: 1440px){
+
+  .FormInputPost{
+    height: 30vh;
+  }
+  .FormInputPost .InputMessage{
+    height: 15vh;
+    margin-bottom: 3rem;
+    border-radius: 65px;
+  }
+
+  .ImgUpload {
+    right: 10rem;
+  }
+
+  .ImgPost img {
+    margin-top: 2rem;
+    height: 45vh;
+    width: 85%; 
+  }
+
+  .FormBtn {
+    left: 28rem;
+  }
+
+  .BtnPost Button {
+    width: 80%;
+    margin: 2rem;
+  }
+
+  .BtnSend Button {
+    width: 100%;
+    margin: 2rem;
+  }
+
+  .ImgProfil img{
+    width: 5%;
+  }
+
+}
+
+@media all and (min-width:1440px){
+ 
+  .FormInputPost {
+   width: 65%;
+   height: 40vh;
+  }
+
+  .ImgUpload {
+    right: 20rem;
+  }
+
+  .FormBtn {
+    left: 42rem;
+  }
+
+  .PostRenderMessage{
+    width: 67%;
+  }
+
+  .ImgPost img {
+   
+    height: 50vh;
     
-//   }
-// }
+  }
+
+  .ImgProfil img{
+    width: 3%;
+  }
+}

@@ -41,6 +41,8 @@ exports.PostId = (req, res, next) => {
 
 exports.ModifyPost = (req, res, next) => {
   // console.log(req.file);
+  const userId = req.auth.userId;
+  const isAdmin = req.auth.isAdmin;
   const editPost = req.file
     ? {
         message: req.body.message,
@@ -56,12 +58,16 @@ exports.ModifyPost = (req, res, next) => {
     Post.findOne({ _id: req.params.id })
       .then((post) => {
         // console.log(post);
-        const filename = post.imageUrl.split("/images/")[1];
-        fs.unlink(`images/${filename}`, (error) => {
-          if (error) {
-            res.status(500).json({ message: "error supp image Post" });
-          }
-        });
+
+        //Si userid et admin
+        if (post.userId === userId || isAdmin === true) {
+          const filename = post.imageUrl.split("/images/")[1];
+          fs.unlink(`images/${filename}`, (error) => {
+            if (error) {
+              res.status(500).json({ message: "error supp image Post" });
+            }
+          });
+        }
       })
       .catch((error) => res.status(400).json({ message: "error Post" }));
   }
@@ -73,10 +79,11 @@ exports.ModifyPost = (req, res, next) => {
 
 exports.deletePost = (req, res, next) => {
   const userId = req.auth.userId;
+  const isAdmin = req.auth.isAdmin;
 
   Post.findOne({ _id: req.params.id })
     .then((post) => {
-      if (post.userId === userId) {
+      if (post.userId === userId || isAdmin === true) {
         const filename = post.imageUrl.split("/images/")[1];
         fs.unlink(`images/${filename}`, () => {
           Post.deleteOne({ _id: req.params.id })

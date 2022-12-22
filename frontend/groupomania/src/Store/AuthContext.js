@@ -6,6 +6,7 @@ const defaultValue = {
   userIsloggedin: false,
   login: () => {},
   logout: () => {},
+  isAdmin: false,
 };
 
 const AuthContext = createContext(defaultValue);
@@ -13,16 +14,20 @@ const AuthContext = createContext(defaultValue);
 export const AuthContextProvider = (props) => {
   const TokenStorage = localStorage.getItem("token");
   const userIdStorage = localStorage.getItem("userId");
+  const isAdminStorage = localStorage.getItem("isAdmin");
 
   const [token, setToken] = useState(TokenStorage);
   const [userId, setUserId] = useState(userIdStorage);
+  const [isAdmin, setIsAdmin] = useState(isAdminStorage);
 
-  const Log = (token, userId) => {
+  const Log = (token, userId, isAdmin) => {
     setToken(token);
     setUserId(userId);
+    setIsAdmin(isAdmin);
 
     localStorage.setItem("token", token);
     localStorage.setItem("userId", userId);
+    localStorage.setItem("isAdmin", isAdmin);
   };
 
   const logOut = () => {
@@ -31,9 +36,11 @@ export const AuthContextProvider = (props) => {
 
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
+    localStorage.removeItem("isAdmin");
   };
 
   const userIsloggedin = !!token;
+  const admin = !!isAdmin;
 
   const contextValue = {
     token: token,
@@ -41,6 +48,7 @@ export const AuthContextProvider = (props) => {
     Isloggedin: userIsloggedin,
     login: Log,
     logout: logOut,
+    isAdmin: admin,
   };
 
   return (

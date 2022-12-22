@@ -2,20 +2,17 @@ import React from "react";
 import { useContext, useState } from "react";
 import AuthContext from "../Store/AuthContext";
 import Button from "./UI/Button";
-// import PostForm from "./PostForm";
 
 const PostModify = ({ Post, setModify, updatePosts }) => {
   const AuthCtxt = useContext(AuthContext);
   const [message, setMessage] = useState(Post.message);
-  // const [ButtonSend, setButtonSend] = useState(false);
+
   const [image, setImage] = useState(Post.imageUrl);
-  console.log(message, image);
 
   const IdPost = Post._id;
 
   const updatePost = (e) => {
     e.preventDefault();
-    console.log("j'ai appuyer sur envoyer");
 
     const formData = new FormData();
     formData.append("message", message);
@@ -32,7 +29,6 @@ const PostModify = ({ Post, setModify, updatePosts }) => {
       .then((res) => {
         setModify(false);
         updatePosts();
-        console.log(res);
       })
       .catch((error) => {
         console.log(error);
@@ -49,16 +45,18 @@ const PostModify = ({ Post, setModify, updatePosts }) => {
             onChange={(e) => setImage(e.target.files[0])}
           />
         </div>
-        {/* input text avec le texte du post */}
+
         <input
+          className="InputModify"
           name="message"
           type="texterea"
           defaultValue={Post.message}
           onChange={(e) => setMessage(e.target.value)}
         />
 
-        {/* valider  */}
-        <Button onClick={(e) => updatePost(e)}>Envoyer</Button>
+        <div className="BtnSend">
+          <Button onClick={(e) => updatePost(e)}>Envoyer</Button>
+        </div>
       </form>
     </div>
   );

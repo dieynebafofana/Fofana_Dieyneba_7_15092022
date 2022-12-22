@@ -19,7 +19,6 @@ const Post = () => {
     })
       .then((data) => data.json())
       .then((Posts) => {
-        console.log(Posts);
         if (!Posts.ok) {
           setPosts(Posts);
         }

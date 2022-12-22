@@ -12,14 +12,19 @@ exports.signup = (req, res, next) => {
         email: req.body.email,
         password: hash,
       });
-      console.log(req.body.password),
-      console.log(user);
+      console.log(req.body.speudo), console.log(user);
       user
         .save()
         .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
-        .catch((error) => res.status(400).json({ message: "utilisateur déja créé" }));
+        .catch((error) =>
+          res.status(400).json({ message: "utilisateur déja créé" })
+        );
     })
-    .catch((error) => res.status(400).json({ message: "Veuillez saisir les champs correspondants"}));
+    .catch((error) =>
+      res
+        .status(400)
+        .json({ message: "Veuillez saisir les champs correspondants" })
+    );
 };
 
 exports.login = (req, res, next) => {
@@ -42,14 +47,17 @@ exports.login = (req, res, next) => {
           }
           res.status(200).json({
             userId: user._id,
-            token: jsonWt.sign({ userId: user._id }, process.env.TOKEN, {
-              expiresIn: "24h",
-            }),
+            isAdmin: user.isAdmin,
+            token: jsonWt.sign(
+              { userId: user._id, isAdmin: user.isAdmin },
+              process.env.TOKEN,
+              {
+                expiresIn: "24h",
+              }
+            ),
           });
         })
         .catch((error) => res.status(400).json({ error }));
     })
     .catch((error) => res.status(400).json({ error }));
 };
-
-

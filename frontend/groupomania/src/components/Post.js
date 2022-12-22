@@ -2,15 +2,17 @@ import Button from "./UI/Button";
 import { useContext, useState } from "react";
 import AuthContext from "../Store/AuthContext";
 import PostModify from "./PostModify";
+// import PostLike from "./PostLike";
 
 const Post = ({ Post, FetchPosts }) => {
   const AuthCtxt = useContext(AuthContext);
   const [modify, setModify] = useState(false);
   const [liked, setLiked] = useState(Post.likes);
-  console.log(Post.usersLiked.includes(AuthCtxt.userId));
-
   const [activeLike, setActiveLike] = useState(
     Post.usersLiked.includes(AuthCtxt.userId)
+  );
+  const [buttonPost, setButtonPost] = useState(
+    AuthCtxt.userId === Post.userId || AuthCtxt.isAdmin === true
   );
 
   const DeletePost = (post_id) => {
@@ -22,6 +24,7 @@ const Post = ({ Post, FetchPosts }) => {
     })
       .then((data) => data.json())
       .then((PostUser) => {
+        console.log(PostUser);
         FetchPosts();
       })
       .catch((error) => {
@@ -36,7 +39,7 @@ const Post = ({ Post, FetchPosts }) => {
 
   const Onlike = (e) => {
     e.preventDefault();
-    console.log("je suis dans le boutton like");
+
     const data = {
       like: activeLike ? 0 : 1,
     };
@@ -49,8 +52,6 @@ const Post = ({ Post, FetchPosts }) => {
       setLiked(liked + 1);
     }
 
-    console.log(Post._id, data);
-
     fetch(`http://localhost:3000/api/posts/${Post._id}/like`, {
       method: "POST",
       headers: {
@@ -61,7 +62,6 @@ const Post = ({ Post, FetchPosts }) => {
     })
       .then((data) => data.json())
       .then((UserLike) => {
-        console.log(UserLike);
         FetchPosts();
       })
       .catch((error) => {
@@ -84,7 +84,7 @@ const Post = ({ Post, FetchPosts }) => {
       )}
 
       <div className="BtnPost">
-        {AuthCtxt.userId === Post.userId && (
+        {buttonPost && (
           <>
             <Button
               className="BtnUpdate"
@@ -99,11 +99,9 @@ const Post = ({ Post, FetchPosts }) => {
             </Button>
           </>
         )}
-
-        <Button
-          onClick={(e) => Onlike(e)}
-          className={activeLike ? "Like-active" : null}
-        >
+        {/* 
+        {liked && <PostLike Post={Post} setLiked={setLiked} />} */}
+        <Button onClick={(e) => Onlike(e)}>
           <div>
             <img
               className="Icon-like "
@@ -111,12 +109,12 @@ const Post = ({ Post, FetchPosts }) => {
               alt="Icon like"
             />
           </div>
-          <div>{liked}</div>
+          <div className={[activeLike ? "Like-active" : null]}>{liked}</div>
         </Button>
       </div>
       <div className="ImgProfil">
         <img src="./user-solid.svg" alt="Profil" />
-        <div>{Post.userId}</div>
+        <div></div>
       </div>
     </div>
   );
