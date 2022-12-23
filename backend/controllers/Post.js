@@ -21,8 +21,6 @@ exports.AddPost = (req, res, next) => {
     message,
     imageUrl: imageUrl,
   });
-  console.log(newPost);
-
   newPost
     .save()
     .then((Post) => res.status(200).json({ message: "post envoyé" }))
@@ -40,7 +38,6 @@ exports.PostId = (req, res, next) => {
 };
 
 exports.ModifyPost = (req, res, next) => {
-  // console.log(req.file);
   const userId = req.auth.userId;
   const isAdmin = req.auth.isAdmin;
   const editPost = req.file
@@ -52,24 +49,21 @@ exports.ModifyPost = (req, res, next) => {
       }
     : { message: req.body.message };
 
-  // console.log(editPost);
-
   if (req.file) {
     Post.findOne({ _id: req.params.id })
       .then((post) => {
-        // console.log(post);
-
-        //Si userid et admin
         if (post.userId === userId || isAdmin === true) {
           const filename = post.imageUrl.split("/images/")[1];
           fs.unlink(`images/${filename}`, (error) => {
             if (error) {
-              res.status(500).json({ message: "error supp image Post" });
+              res
+                .status(500)
+                .json({ message: "erreur suppression image Post" });
             }
           });
         }
       })
-      .catch((error) => res.status(400).json({ message: "error Post" }));
+      .catch((error) => res.status(400).json({ message: "erreur Post" }));
   }
 
   Post.updateOne({ _id: req.params.id }, { ...editPost })
@@ -106,7 +100,6 @@ exports.deletePost = (req, res, next) => {
 exports.likePost = (req, res, next) => {
   const userId = req.auth.userId;
   const { like } = req.body;
-  console.log(req.body);
 
   Post.findOne({ _id: req.params.id })
     .then((PostLike) => {

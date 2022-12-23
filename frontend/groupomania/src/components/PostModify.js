@@ -6,7 +6,7 @@ import Button from "./UI/Button";
 const PostModify = ({ Post, setModify, updatePosts }) => {
   const AuthCtxt = useContext(AuthContext);
   const [message, setMessage] = useState(Post.message);
-
+  const [messageModify, setMessageModify] = useState(null);
   const [image, setImage] = useState(Post.imageUrl);
 
   const IdPost = Post._id;
@@ -29,6 +29,7 @@ const PostModify = ({ Post, setModify, updatePosts }) => {
       .then((res) => {
         setModify(false);
         updatePosts();
+        setMessageModify(res.message);
       })
       .catch((error) => {
         console.log(error);
@@ -57,6 +58,7 @@ const PostModify = ({ Post, setModify, updatePosts }) => {
         <div className="BtnSend">
           <Button onClick={(e) => updatePost(e)}>Envoyer</Button>
         </div>
+        {<span>{messageModify}</span>}
       </form>
     </div>
   );

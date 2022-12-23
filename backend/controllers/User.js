@@ -1,10 +1,8 @@
 const bcrypt = require("bcrypt");
 const jsonWt = require("jsonwebtoken");
-
 const User = require("../models/User");
 
 exports.signup = (req, res, next) => {
-  console.log(req.body);
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {
@@ -12,7 +10,7 @@ exports.signup = (req, res, next) => {
         email: req.body.email,
         password: hash,
       });
-      console.log(req.body.speudo), console.log(user);
+
       user
         .save()
         .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
@@ -28,10 +26,8 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-  console.log(req.body);
   User.findOne({ email: req.body.email })
     .then((user) => {
-      console.log(user);
       if (!user) {
         return res
           .status(400)
