@@ -1,8 +1,5 @@
 .navigation {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  @include flexrow-center;
   border-bottom: 3px black solid;
 }
 
@@ -14,10 +11,7 @@
   font-size: 1.5rem;
   height: 10vh;
   list-style-type: none;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  @include Flexrow-space-between;
 }
 
 .navigation__li {
@@ -35,10 +29,7 @@
 // media queries
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .navigation {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: flex-end;
+    @include Flexrow-flex-end;
   }
 
   .navigation__li {
@@ -52,12 +43,9 @@
   }
 }
 
-@media all and (min-width:1024px){
+@media all and (min-width: 1024px) {
   .navigation {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: flex-end;
+    @include Flexrow-flex-end;
   }
 
   .navigation__li {

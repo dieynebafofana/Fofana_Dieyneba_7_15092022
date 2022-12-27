@@ -24,7 +24,6 @@ const Post = ({ Post, FetchPosts }) => {
     })
       .then((data) => data.json())
       .then((PostUser) => {
-        console.log(PostUser);
         FetchPosts();
       })
       .catch((error) => {

@@ -1,0 +1,45 @@
+.FormPost {
+  height: 18vh;
+  @include Flexcolumn-center;
+  position: relative;
+}
+
+.FormInputPost .InputMessage {
+  height: 9vh;
+  width: 100%;
+  margin-bottom: 50px;
+  border-radius: 45px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: 15px gray;
+  box-shadow: 0px 0px 0px 25px gray;
+}
+
+.ImgUpload {
+  position: absolute;
+  top: 5rem;
+  right: 3rem;
+}
+
+.ImgUpload img {
+  height: 2rem;
+}
+
+.Image {
+  position: absolute;
+  right: 1rem;
+  top: 0rem;
+}
+
+.ImgUploadFile {
+  position: relative;
+  left: 13rem;
+  width: 14%;
+  opacity: 0;
+}
+
+.FormBtn {
+  position: absolute;
+  top: 7rem;
+  left: 9rem;
+}

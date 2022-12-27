@@ -5,7 +5,7 @@ import AuthContext from "../Store/AuthContext";
 import Logo from "../components/Logo";
 import Logout from "../components/Logout";
 import PostForm from "../components/PostForm";
-import PostComponent from "../components/Post";
+import PostComponent from "../components/PostComponent";
 
 const Post = () => {
   const AuthCtxt = useContext(AuthContext);
