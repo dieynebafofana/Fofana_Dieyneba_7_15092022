@@ -4,15 +4,21 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  box-sizing: border-box;
 }
 .PostRenderMessage {
   border: 2px solid #ffd7d7;
   border-radius: 55px;
   padding: 10px;
+  margin-top: 20px;
   width: 85%;
   background-color: white;
   display: flex;
   flex-direction: column;
+}
+
+.PostRenderMessage p {
+  margin-left: 10px;
 }
 
 .ImgPost {
@@ -24,6 +30,7 @@
   height: 25vh;
   width: 95%;
   border-radius: 35px 35px 35px 35px;
+  box-sizing: border-box;
 }
 
 .BtnPost {
@@ -70,27 +77,18 @@
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-  .FormInputPost {
+  .PostRenderMessage {
+    padding: 20px;
     width: 80%;
-    height: 20vh;
-  }
-
-  .ImgUpload {
-    right: 10rem;
-  }
-
-  .FormBtn {
-    left: 20rem;
   }
 
   .BtnPost Button {
     width: 100%;
-    margin: 2rem;
+    font-size: 18px;
   }
 
-  .BtnSend Button {
-    width: 100%;
-    margin: 2rem;
+  .ImgPost img {
+    height: 40vh;
   }
 
   .ImgProfil img {
@@ -99,60 +97,39 @@
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1440px) {
-  .FormInputPost {
-    height: 30vh;
-  }
-  .FormInputPost .InputMessage {
-    height: 15vh;
-    margin-bottom: 3rem;
-    border-radius: 65px;
-  }
-
-  .ImgUpload {
-    right: 10rem;
+  .PostRenderMessage p {
+    margin-left: 40px;
   }
 
   .ImgPost img {
     margin-top: 2rem;
-    height: 45vh;
-    width: 85%;
-  }
-
-  .FormBtn {
-    left: 28rem;
+    height: 50vh;
+    width: 90%;
   }
 
   .BtnPost Button {
-    width: 80%;
-    margin: 2rem;
-  }
-
-  .BtnSend Button {
     width: 100%;
-    margin: 2rem;
   }
 
   .ImgProfil img {
     width: 5%;
+    margin-left: 40px;
   }
 }
 
 @media all and (min-width: 1440px) {
-  .FormInputPost {
-    width: 65%;
-    height: 40vh;
-  }
+ 
 
-  .ImgUpload {
-    right: 20rem;
-  }
-
-  .FormBtn {
-    left: 42rem;
+  .PostRenderMessage p {
+    margin-left: 50px;
   }
 
   .PostRenderMessage {
     width: 67%;
+  }
+
+  .BtnPost Button {
+   font-size: 20px;
   }
 
   .ImgPost img {
@@ -161,5 +138,6 @@
 
   .ImgProfil img {
     width: 3%;
+    margin-left: 50px;
   }
 }

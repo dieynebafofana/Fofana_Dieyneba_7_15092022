@@ -1,17 +1,26 @@
 .InputModify {
   height: 12vh;
-  width: 100%;
+  width: 98%;
   margin-top: 1rem;
   border: 2px solid black;
 }
 
-.BtnSend{
+.BtnSend {
   @include flexrow-center;
   margin-top: 2rem;
 }
 
-.BtnSend Button{
+.BtnSend Button {
   color: $color-primary;
   font-size: 16px;
+}
 
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+  .InputModify {
+    width: 95%;
+  }
+  .BtnSend Button {
+    width: 100%;
+    padding: 15px;
+  }
 }
