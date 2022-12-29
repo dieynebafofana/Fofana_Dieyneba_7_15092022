@@ -1,7 +1,7 @@
-import Button from "./UI/Button";
+import Button from "../UI/Button";
 import { useContext, useState } from "react";
-import AuthContext from "../Store/AuthContext";
-import PostModify from "./PostModify";
+import AuthContext from "../../Store/AuthContext";
+import PostModify from "../PostModify/PostModify";
 // import PostLike from "./PostLike";
 
 const Post = ({ Post, FetchPosts }) => {
@@ -104,7 +104,7 @@ const Post = ({ Post, FetchPosts }) => {
           <div>
             <img
               className="Icon-like "
-              src="./thumbs-up-regular.svg"
+              src="./images/thumbs-up-regular.svg"
               alt="Icon like"
             />
           </div>
@@ -112,8 +112,8 @@ const Post = ({ Post, FetchPosts }) => {
         </Button>
       </div>
       <div className="ImgProfil">
-        <img src="./user-solid.svg" alt="Profil" />
-        <div></div>
+        <img src="./images/user-solid.svg" alt="Profil" />
+        {!AuthCtxt.userId === !Post.userId && <div>{Post.pseudo}</div>}
       </div>
     </div>
   );

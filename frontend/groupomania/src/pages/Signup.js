@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import Logo from "../components/Logo";
-import Nav from "../components/Nav";
+import Logo from "../components/Header/Logo/Logo";
+import Nav from "../components/Header/Nav/Nav";
 import "../../src/styles/pages/index.scss";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const [pseudo, setPseudo] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newUser, setNewUser] = useState("");
@@ -16,6 +17,7 @@ const Signup = () => {
   const functionSignup = (e) => {
     e.preventDefault();
     const data = {
+      pseudo: pseudo,
       email: email,
       password: password,
     };
@@ -49,6 +51,14 @@ const Signup = () => {
       <section>
         <h1>Créer un compte</h1>
         <form action="" onSubmit={functionSignup}>
+          <div className="FormInput">
+            <label htmlFor="pseudo">Pseudo</label>
+            <input
+              name="pseudo"
+              type="pseudo"
+              onChange={(e) => setPseudo(e.target.value)}
+            />
+          </div>
           <div className="FormInput">
             <label htmlFor="email">Veuillez saisir une adresse email</label>
             <input

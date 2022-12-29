@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext, useState } from "react";
-import AuthContext from "../Store/AuthContext";
-import Button from "./UI/Button";
+import AuthContext from "../../Store/AuthContext";
+import Button from "../UI/Button";
 
 const PostModify = ({ Post, setModify, updatePosts }) => {
   const AuthCtxt = useContext(AuthContext);

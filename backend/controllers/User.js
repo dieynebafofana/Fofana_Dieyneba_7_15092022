@@ -7,6 +7,7 @@ exports.signup = (req, res, next) => {
     .hash(req.body.password, 10)
     .then((hash) => {
       const user = new User({
+        pseudo: req.body.pseudo,
         email: req.body.email,
         password: hash,
       });
@@ -26,7 +27,7 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-  User.findOne({ email: req.body.email })
+  User.findOne({ email: req.body.email, pseudo: req.body.pseudo })
     .then((user) => {
       if (!user) {
         return res
@@ -42,10 +43,11 @@ exports.login = (req, res, next) => {
               .json({ message: "Email ou mot de passe incorrect" });
           }
           res.status(200).json({
+            pseudo: user.pseudo,
             userId: user._id,
             isAdmin: user.isAdmin,
             token: jsonWt.sign(
-              { userId: user._id, isAdmin: user.isAdmin },
+              { userId: user._id, isAdmin: user.isAdmin, pseudo: user.pseudo },
               process.env.TOKEN,
               {
                 expiresIn: "24h",

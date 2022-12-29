@@ -1,9 +1,9 @@
 // importer tout les imports
 @import "../pages/settings";
-@import "../pages/logo";
-@import "../pages/nav";
+@import "../../components/Header/Logo/logo";
+@import "../../components/Header/Nav/nav";
 @import "../pages/login";
-@import "../pages/Button";
-@import "../pages/postComponent";
-@import "../pages/postForm";
-@import "../pages/postModify";
+@import "../../components/UI/Button";
+@import "../../components/PostCompenent/postComponent";
+@import "../../components/PostForm/postForm";
+@import "../../components/PostModify/postModify";

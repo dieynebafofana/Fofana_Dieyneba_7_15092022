@@ -9,10 +9,8 @@ exports.AllPosts = (req, res, next) => {
 };
 
 exports.AddPost = (req, res, next) => {
-  console.log(req.body);
   const { message } = req.body;
-  const userId = req.auth.userId;
-
+  const { userId, pseudo } = req.auth;
   const imageUrl = `${req.protocol}://${req.get("host")}/images/${
     req.file.filename
   }`;
@@ -20,6 +18,7 @@ exports.AddPost = (req, res, next) => {
     userId,
     message,
     imageUrl: imageUrl,
+    pseudo: pseudo,
   });
   newPost
     .save()
@@ -38,8 +37,7 @@ exports.PostId = (req, res, next) => {
 };
 
 exports.ModifyPost = (req, res, next) => {
-  const userId = req.auth.userId;
-  const isAdmin = req.auth.isAdmin;
+  const { userId, isAdmin } = req.auth;
   const editPost = req.file
     ? {
         message: req.body.message,
@@ -72,8 +70,7 @@ exports.ModifyPost = (req, res, next) => {
 };
 
 exports.deletePost = (req, res, next) => {
-  const userId = req.auth.userId;
-  const isAdmin = req.auth.isAdmin;
+  const { userId, isAdmin } = req.auth;
 
   Post.findOne({ _id: req.params.id })
     .then((post) => {

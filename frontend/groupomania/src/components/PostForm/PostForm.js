@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useContext } from "react";
-import AuthContext from "../Store/AuthContext";
+import AuthContext from "../../../Store/AuthContext";
 
-import Button from "./UI/Button";
+import Button from "../../UI/Button";
 
 const PostForm = ({ PostOnUpdate }) => {
   const [message, setMessage] = useState(null);
@@ -14,6 +14,7 @@ const PostForm = ({ PostOnUpdate }) => {
     e.preventDefault();
 
     const formData = new FormData();
+
     formData.append("message", message);
     formData.append("image", image);
 
@@ -28,12 +29,11 @@ const PostForm = ({ PostOnUpdate }) => {
       .then((Post) => {
         setMessage("");
         setImage("");
+
         // setPostMessage(Post.message);
         PostOnUpdate();
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
   return (
@@ -53,7 +53,7 @@ const PostForm = ({ PostOnUpdate }) => {
               <div className="ImgUpload">
                 <img
                   className="Image"
-                  src="./upload-solid.svg"
+                  src="./images/upload-solid.svg"
                   alt="Logo upload"
                 />
                 <div>

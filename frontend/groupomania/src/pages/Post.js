@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../Store/AuthContext";
-import Logo from "../components/Logo";
-import Logout from "../components/Logout";
-import PostForm from "../components/PostForm";
-import PostComponent from "../components/PostComponent";
+import Logo from "../components/Header/Logo/Logo";
+import Logout from "../components/Header/Logout";
+import PostForm from "../components/Auth/PostForm/PostForm";
+import PostComponent from "../components/PostCompenent/PostComponent";
 
 const Post = () => {
   const AuthCtxt = useContext(AuthContext);
@@ -49,6 +49,7 @@ const Post = () => {
                   Post={post}
                   FetchPosts={FetchPosts}
                   key={post._id}
+                  pseudo={post.pseudo}
                 ></PostComponent>
               ))}
           </section>

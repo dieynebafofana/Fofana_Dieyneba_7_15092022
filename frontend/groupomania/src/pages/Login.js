@@ -1,12 +1,13 @@
 import { useContext, useState } from "react";
-import Logo from "../components/Logo";
-import Nav from "../components/Nav";
+import Logo from "../components/Header/Logo/Logo";
+import Nav from "../components/Header/Nav/Nav";
 import "../../src/styles/pages/index.scss";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/UI/Button";
 import AuthContext from "../Store/AuthContext";
 
 const Login = () => {
+  const [pseudo, setPseudo] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -17,6 +18,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
+      pseudo: pseudo,
       email: email,
       password: password,
     };
@@ -33,8 +35,10 @@ const Login = () => {
         const token = res.token;
         const userId = res.userId;
         const isAdmin = res.isAdmin;
+
+        console.log(token, userId, isAdmin, pseudo);
         if (token) {
-          AuthCtxt.login(token, userId, isAdmin);
+          AuthCtxt.login(token, userId, pseudo, isAdmin);
           setIsloading(true);
           Navigate("/Post");
         } else {
@@ -57,6 +61,14 @@ const Login = () => {
       <section>
         <h1>Se connecter</h1>
         <form action="" onSubmit={handleSubmit}>
+          <div className="FormInput">
+            <label htmlFor="pseudo">Pseudo</label>
+            <input
+              name="pseudo"
+              type="pseudo"
+              onChange={(e) => setPseudo(e.target.value)}
+            />
+          </div>
           <div className="FormInput">
             <label htmlFor="email">Entrée une adresse email</label>
             <input

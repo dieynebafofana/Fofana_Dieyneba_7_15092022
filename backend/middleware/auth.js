@@ -9,13 +9,13 @@ module.exports = (req, res, next) => {
     const decodedToken = jsonWt.verify(token, process.env.TOKEN);
     const userId = decodedToken.userId;
     const isAdmin = decodedToken.isAdmin;
+    const pseudo = decodedToken.pseudo;
 
     req.auth = {
       userId: userId,
       isAdmin: isAdmin,
+      pseudo: pseudo,
     };
-
-    console.log(userId);
     next();
   } catch (error) {
     res.status(403).json({ error });
