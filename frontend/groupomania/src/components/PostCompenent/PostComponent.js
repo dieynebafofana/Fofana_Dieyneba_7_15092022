@@ -12,11 +12,13 @@ const Post = ({ Post, FetchPosts }) => {
     Post.usersLiked.includes(AuthCtxt.userId)
   );
   const [buttonPost, setButtonPost] = useState(
-    AuthCtxt.userId === Post.userId || AuthCtxt.isAdmin === true
+    AuthCtxt.userId === Post.userId._id || AuthCtxt.isAdmin === true
   );
 
-  const DeletePost = (post_id) => {
-    fetch(`http://localhost:3000/api/posts/${post_id}`, {
+  const PostId = Post.userId._id;
+
+  const DeletePost = (PostId) => {
+    fetch(`http://localhost:3000/api/posts/${PostId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${AuthCtxt.token}`,
@@ -93,7 +95,7 @@ const Post = ({ Post, FetchPosts }) => {
               {modify ? "Annuler" : "Modifier"}
             </Button>
 
-            <Button className="BtnDelete" onClick={() => DeletePost(Post._id)}>
+            <Button className="BtnDelete" onClick={() => DeletePost(PostId)}>
               supprimer
             </Button>
           </>
@@ -113,7 +115,9 @@ const Post = ({ Post, FetchPosts }) => {
       </div>
       <div className="ImgProfil">
         <img src="./images/user-solid.svg" alt="Profil" />
-        {!AuthCtxt.userId === !Post.userId && <div>{Post.pseudo}</div>}
+        {!AuthCtxt.userId === !Post.userId && (
+          <div className="pseudo">{Post.userId.pseudo}</div>
+        )}
       </div>
     </div>
   );

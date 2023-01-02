@@ -4,6 +4,7 @@ const fs = require("fs");
 
 exports.AllPosts = (req, res, next) => {
   Post.find()
+    .populate("userId")
     .then((Posts) => res.send(Posts))
     .catch((error) => res.status(400).json({ error }));
 };

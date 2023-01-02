@@ -2,8 +2,7 @@ const { timeStamp } = require("console");
 const mongoose = require("mongoose");
 
 const PostSchema = mongoose.Schema({
-  pseudo: { type: String, required: true },
-  userId: { type: String, required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   message: { type: String, required: true, maxlenght: 300 },
   imageUrl: { type: String, required: true },
   likes: { type: Number, default: 0 },

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useContext } from "react";
-import AuthContext from "../../../Store/AuthContext";
+import AuthContext from "../../Store/AuthContext";
 
-import Button from "../../UI/Button";
+import Button from "../UI/Button";
 
 const PostForm = ({ PostOnUpdate }) => {
   const [message, setMessage] = useState(null);

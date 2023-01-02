@@ -62,14 +62,6 @@ const Login = () => {
         <h1>Se connecter</h1>
         <form action="" onSubmit={handleSubmit}>
           <div className="FormInput">
-            <label htmlFor="pseudo">Pseudo</label>
-            <input
-              name="pseudo"
-              type="pseudo"
-              onChange={(e) => setPseudo(e.target.value)}
-            />
-          </div>
-          <div className="FormInput">
             <label htmlFor="email">Entrée une adresse email</label>
             <input
               name="email"

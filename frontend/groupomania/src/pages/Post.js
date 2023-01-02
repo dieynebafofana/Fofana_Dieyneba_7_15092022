@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../Store/AuthContext";
 import Logo from "../components/Header/Logo/Logo";
 import Logout from "../components/Header/Logout";
-import PostForm from "../components/Auth/PostForm/PostForm";
+import PostForm from "../components/PostForm/PostForm";
 import PostComponent from "../components/PostCompenent/PostComponent";
 
 const Post = () => {
@@ -24,6 +24,7 @@ const Post = () => {
       .then((Posts) => {
         if (!Posts.ok) {
           setPosts(Posts);
+          console.log(Posts);
         }
       })
       .catch((error) => {
