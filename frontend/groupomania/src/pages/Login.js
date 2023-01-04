@@ -7,7 +7,6 @@ import Button from "../components/UI/Button";
 import AuthContext from "../Store/AuthContext";
 
 const Login = () => {
-  const [pseudo, setPseudo] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -18,7 +17,6 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-      pseudo: pseudo,
       email: email,
       password: password,
     };
@@ -36,9 +34,9 @@ const Login = () => {
         const userId = res.userId;
         const isAdmin = res.isAdmin;
 
-        console.log(token, userId, isAdmin, pseudo);
+        console.log(token, userId, isAdmin);
         if (token) {
-          AuthCtxt.login(token, userId, pseudo, isAdmin);
+          AuthCtxt.login(token, userId, isAdmin);
           setIsloading(true);
           Navigate("/Post");
         } else {

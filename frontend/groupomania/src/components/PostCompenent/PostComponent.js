@@ -15,10 +15,8 @@ const Post = ({ Post, FetchPosts }) => {
     AuthCtxt.userId === Post.userId._id || AuthCtxt.isAdmin === true
   );
 
-  const PostId = Post.userId._id;
-
-  const DeletePost = (PostId) => {
-    fetch(`http://localhost:3000/api/posts/${PostId}`, {
+  const DeletePost = (Post) => {
+    fetch(`http://localhost:3000/api/posts/${Post._id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${AuthCtxt.token}`,
@@ -28,9 +26,7 @@ const Post = ({ Post, FetchPosts }) => {
       .then((PostUser) => {
         FetchPosts();
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
   const ModifyPostToggle = () => {
@@ -95,15 +91,17 @@ const Post = ({ Post, FetchPosts }) => {
               {modify ? "Annuler" : "Modifier"}
             </Button>
 
-            <Button className="BtnDelete" onClick={() => DeletePost(PostId)}>
+            <Button
+              className="BtnDelete"
+              id={Post._id}
+              onClick={() => DeletePost(Post)}
+            >
               supprimer
             </Button>
           </>
         )}
-        {/* 
-        {liked && <PostLike Post={Post} setLiked={setLiked} />} */}
         <Button onClick={(e) => Onlike(e)}>
-          <div>
+          <div className="BtnLike">
             <img
               className="Icon-like "
               src="./images/thumbs-up-regular.svg"
@@ -115,7 +113,7 @@ const Post = ({ Post, FetchPosts }) => {
       </div>
       <div className="ImgProfil">
         <img src="./images/user-solid.svg" alt="Profil" />
-        {!AuthCtxt.userId === !Post.userId && (
+        {!AuthCtxt.userId === !Post.userId._id && (
           <div className="pseudo">{Post.userId.pseudo}</div>
         )}
       </div>
