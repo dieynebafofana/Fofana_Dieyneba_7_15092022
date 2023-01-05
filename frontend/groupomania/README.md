@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# GROUPOMANIA
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Ce projet a été généré avec react.js "18.2.0". coté frontend
+et coté Backend par express "4.18.1".
 
-## Available Scripts
+## Installation Back-end =>>
 
-In the project directory, you can run:
+Ouvrir le terminal en ce placant sur le dossier `backend`
 
-### `npm start`
+`npm install`
+installe l'application
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+lancer l'application en entrant la commande `node server`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Créer un fichier `.env` pour stocker les variables d'environnement telle les identifiants mongodb.
 
-### `npm test`
+<!-- Les compte user et admin pour faire les testes ? (Dans pdf annex + Des donée env) -->
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Le server de développement
 
-### `npm run build`
+Le serveur doit fonctionner sur localhost avec le port 3000 par défaut. Si le serveur fonctionne sur un autre port pour une raison quelconque, cette information est affichée sur la console au démarrage du serveur, par exemple : "Listening on port 3001".
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation Front-end =>>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Ouvrir le terminal en ce plaçant sur le dossier `groupomania`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+//Npm install
 
-### `npm run eject`
+`npm start`
+Ouvre l'application React
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## En savoir plus
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Vous pouvez en savoir plus dans la [documentation sur la création d'une application React](https://facebook.github.io/create-react-app/docs/getting-started)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Pour apprendre React, consultez la [documentation React](https://reactjs.org/).

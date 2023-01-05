@@ -2,7 +2,6 @@ import Button from "../UI/Button";
 import { useContext, useState } from "react";
 import AuthContext from "../../Store/AuthContext";
 import PostModify from "../PostModify/PostModify";
-// import PostLike from "./PostLike";
 
 const Post = ({ Post, FetchPosts }) => {
   const AuthCtxt = useContext(AuthContext);
@@ -11,9 +10,8 @@ const Post = ({ Post, FetchPosts }) => {
   const [activeLike, setActiveLike] = useState(
     Post.usersLiked.includes(AuthCtxt.userId)
   );
-  const [buttonPost, setButtonPost] = useState(
-    AuthCtxt.userId === Post.userId._id || AuthCtxt.isAdmin === true
-  );
+  const buttonPost =
+    AuthCtxt.userId === Post.userId._id || AuthCtxt.isAdmin === true;
 
   const DeletePost = (Post) => {
     fetch(`http://localhost:3000/api/posts/${Post._id}`, {
@@ -61,9 +59,7 @@ const Post = ({ Post, FetchPosts }) => {
       .then((UserLike) => {
         FetchPosts();
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
   return (
@@ -101,12 +97,23 @@ const Post = ({ Post, FetchPosts }) => {
           </>
         )}
         <Button onClick={(e) => Onlike(e)}>
-          <div className="BtnLike">
-            <img
-              className="Icon-like "
-              src="./images/thumbs-up-regular.svg"
-              alt="Icon like"
-            />
+          <div className={[activeLike ? "Icon-Like" : null]}>
+            <div>
+              <div>
+                <img
+                  className="Icon-1"
+                  src="./images/heart-regular.svg"
+                  alt="iconlike"
+                />
+              </div>
+              <div>
+                <img
+                  className="Icon-2"
+                  src="./images/heart-solid.svg"
+                  alt="iconlike"
+                />
+              </div>
+            </div>
           </div>
           <div className={[activeLike ? "Like-active" : null]}>{liked}</div>
         </Button>

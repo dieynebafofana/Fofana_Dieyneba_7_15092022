@@ -31,9 +31,7 @@ const PostModify = ({ Post, setModify, updatePosts }) => {
         updatePosts();
         setMessageModify(res.message);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
   return (

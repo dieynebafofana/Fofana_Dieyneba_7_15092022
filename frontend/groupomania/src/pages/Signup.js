@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import Logo from "../components/Header/Logo/Logo";
 import Nav from "../components/Header/Nav/Nav";
@@ -31,18 +30,16 @@ const Signup = () => {
     })
       .then((data) => data.json())
       .then((UserLogin) => {
-        setNewUser(UserLogin.message);
-
-        if (!data.ok) {
-          setError(UserLogin.error);
+        if (UserLogin.ok) {
+          setNewUser(UserLogin.message);
+          Navigate("/Login");
+        } else {
+          setError(UserLogin.message);
         }
-
-        Navigate("/Login");
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   };
+
   return (
     <div className="App">
       <Logo />
@@ -76,7 +73,7 @@ const Signup = () => {
             />
           </div>
           {newUser}
-          {<span>{error}</span>}
+          {<span className="text-color">{error}</span>}
           <div>
             <button className="btnConnexion" type="submit" value="Connexion">
               S'inscrire

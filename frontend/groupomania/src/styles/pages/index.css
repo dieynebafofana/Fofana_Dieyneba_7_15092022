@@ -23,7 +23,7 @@ body {
   width: 80%;
   height: 50vh;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .ImgPost {
@@ -35,7 +35,7 @@ body {
 
 .ImgPost img {
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   height: 25vh;
   width: 95%;
   border-radius: 35px 35px 35px 35px;
@@ -386,4 +386,4 @@ form {
   .ImgProfil img {
     width: 3%;
   }
-}/*# sourceMappingURL=index.css.map */
+} /*# sourceMappingURL=index.css.map */

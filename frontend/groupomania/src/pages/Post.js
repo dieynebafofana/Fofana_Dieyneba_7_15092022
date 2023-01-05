@@ -24,12 +24,9 @@ const Post = () => {
       .then((Posts) => {
         if (!Posts.ok) {
           setPosts(Posts);
-          console.log(Posts);
         }
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
   useEffect(() => {

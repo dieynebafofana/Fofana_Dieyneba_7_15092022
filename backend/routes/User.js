@@ -10,6 +10,4 @@ const router = express.Router();
 router.post("/signup", passWordValidator, userCtrl.signup);
 router.post("/login", userCtrl.login);
 
-
-
 module.exports = router;

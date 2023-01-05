@@ -34,7 +34,6 @@ const Login = () => {
         const userId = res.userId;
         const isAdmin = res.isAdmin;
 
-        console.log(token, userId, isAdmin);
         if (token) {
           AuthCtxt.login(token, userId, isAdmin);
           setIsloading(true);
@@ -46,9 +45,7 @@ const Login = () => {
           }
         }
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
     setIsloading(true);
   };
 
@@ -75,7 +72,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          {<span>{error}</span>}
+          {<span className="text-color">{error}</span>}
           <div>
             {!isLoading && (
               <Button className="btnLogin" type="submit" value="connexion">

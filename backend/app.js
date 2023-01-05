@@ -34,5 +34,4 @@ app.use(helmet());
 app.use("/api/auth", userRoutes);
 app.use("/api/posts", postRoutes);
 
-
 module.exports = app;

@@ -70,11 +70,11 @@ exports.ModifyPost = (req, res, next) => {
 };
 
 exports.deletePost = (req, res, next) => {
-  const { isAdmin } = req.auth;
+  const { userId, isAdmin } = req.auth;
 
   Post.findOne({ _id: req.params.id })
     .then((post) => {
-      if (!post._id === !post.userId._id || isAdmin === true) {
+      if (post.userId == userId || isAdmin === true) {
         const filename = post.imageUrl.split("/images/")[1];
         fs.unlink(`images/${filename}`, () => {
           Post.deleteOne({ _id: req.params.id })

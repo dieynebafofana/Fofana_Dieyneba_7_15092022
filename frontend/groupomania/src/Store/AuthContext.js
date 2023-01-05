@@ -13,38 +13,20 @@ const defaultValue = {
 const AuthContext = createContext(defaultValue);
 
 export const AuthContextProvider = (props) => {
-  const TokenStorage = localStorage.getItem("token");
-  const userIdStorage = localStorage.getItem("userId");
-  const isAdminStorage = localStorage.getItem("isAdmin");
-  const pseudoStorage = localStorage.getItem("pseudo");
+  const [token, setToken] = useState("");
+  const [userId, setUserId] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
 
-  const [token, setToken] = useState(TokenStorage);
-  const [userId, setUserId] = useState(userIdStorage);
-  const [isAdmin, setIsAdmin] = useState(isAdminStorage);
-  const [pseudo, setPseudo] = useState(pseudoStorage);
-
-  const Log = (token, userId, pseudo, isAdmin) => {
+  const Log = (token, userId, isAdmin) => {
     setToken(token);
     setUserId(userId);
     setIsAdmin(isAdmin);
-    setPseudo(pseudo);
-
-    localStorage.setItem("token", token);
-    localStorage.setItem("userId", userId);
-    localStorage.setItem("isAdmin", isAdmin);
-    localStorage.setItem("pseudo", pseudo);
   };
 
   const logOut = () => {
     setToken(null);
     setUserId(null);
-    setPseudo(null);
     setIsAdmin(null);
-
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("pseudo");
-    localStorage.removeItem("isAdmin");
   };
 
   const userIsloggedin = !!token;
@@ -57,7 +39,6 @@ export const AuthContextProvider = (props) => {
     login: Log,
     logout: logOut,
     isAdmin: Admin,
-    pseudo: pseudo,
   };
 
   return (
