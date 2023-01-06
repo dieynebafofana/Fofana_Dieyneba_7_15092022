@@ -97,25 +97,17 @@ const Post = ({ Post, FetchPosts }) => {
           </>
         )}
         <Button onClick={(e) => Onlike(e)}>
-          <div className={[activeLike ? "Icon-Like" : null]}>
-            <div>
-              <div>
-                <img
-                  className="Icon-1"
-                  src="./images/heart-regular.svg"
-                  alt="iconlike"
-                />
-              </div>
-              <div>
-                <img
-                  className="Icon-2"
-                  src="./images/heart-solid.svg"
-                  alt="iconlike"
-                />
-              </div>
+          <div className="btnlike">
+            <div className={[activeLike ? "AnimLike" : null]}>
+              <img
+                className="Icon-Like AnimLike"
+                src="./images/thumbs-up-regular.svg"
+                alt="likeIcon"
+              />
             </div>
+            <div></div>
+            <div className={[activeLike ? "Like-active" : null]}>{liked}</div>
           </div>
-          <div className={[activeLike ? "Like-active" : null]}>{liked}</div>
         </Button>
       </div>
       <div className="ImgProfil">

@@ -14,8 +14,6 @@ lancer l'application en entrant la commande `node server`
 
 Créer un fichier `.env` pour stocker les variables d'environnement telle les identifiants mongodb.
 
-<!-- Les compte user et admin pour faire les testes ? (Dans pdf annex + Des donée env) -->
-
 ## Le server de développement
 
 Le serveur doit fonctionner sur localhost avec le port 3000 par défaut. Si le serveur fonctionne sur un autre port pour une raison quelconque, cette information est affichée sur la console au démarrage du serveur, par exemple : "Listening on port 3001".

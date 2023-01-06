@@ -7,7 +7,7 @@ import Button from "../UI/Button";
 const PostForm = ({ PostOnUpdate }) => {
   const [message, setMessage] = useState(null);
   const [image, setImage] = useState(null);
-  const [PostMessage, setPostMessage] = useState(null);
+
   const AuthCtxt = useContext(AuthContext);
 
   const handleSubmit = (e) => {
@@ -29,7 +29,6 @@ const PostForm = ({ PostOnUpdate }) => {
       .then((Post) => {
         setMessage("");
         setImage("");
-        setPostMessage(alert(Post.message));
         PostOnUpdate();
       })
       .catch((error) => {});
@@ -78,7 +77,6 @@ const PostForm = ({ PostOnUpdate }) => {
               <Button type="submit">Envoyer</Button>
             </div>
           </div>
-          {<span>{PostMessage}</span>}
         </form>
       </section>
     </div>
