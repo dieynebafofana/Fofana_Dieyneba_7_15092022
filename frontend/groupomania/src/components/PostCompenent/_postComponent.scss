@@ -57,10 +57,12 @@
 }
 
 .AnimLike {
-  transform: (scale(1.1));
+  transform: (scale(1.2));
+  color: red;
 }
 
 .Like-active {
+  transform: scale((1.2));
   color: $color-primary;
 }
 

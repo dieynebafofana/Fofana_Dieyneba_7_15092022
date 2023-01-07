@@ -2,6 +2,8 @@ import Button from "../UI/Button";
 import { useContext, useState } from "react";
 import AuthContext from "../../Store/AuthContext";
 import PostModify from "../PostModify/PostModify";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
 const Post = ({ Post, FetchPosts }) => {
   const AuthCtxt = useContext(AuthContext);
@@ -98,12 +100,10 @@ const Post = ({ Post, FetchPosts }) => {
         )}
         <Button onClick={(e) => Onlike(e)}>
           <div className="btnlike">
-            <div className={[activeLike ? "AnimLike" : null]}>
-              <img
-                className="Icon-Like AnimLike"
-                src="./images/thumbs-up-regular.svg"
-                alt="likeIcon"
-              />
+            <div className={[activeLike ? "Like-active" : null]}>
+              <div className="Icon-Like">
+                <FontAwesomeIcon icon={faThumbsUp}></FontAwesomeIcon>
+              </div>
             </div>
             <div></div>
             <div className={[activeLike ? "Like-active" : null]}>{liked}</div>
