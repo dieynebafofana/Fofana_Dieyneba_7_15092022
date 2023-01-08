@@ -35,9 +35,12 @@ const Signup = () => {
           Navigate("/Login");
         } else {
           setError(UserLogin.message);
+          setNewUser(UserLogin.error);
         }
       })
-      .catch((err) => {});
+      .catch((error) => {
+        setNewUser(error.error.message);
+      });
   };
 
   return (

@@ -16,13 +16,13 @@ exports.signup = (req, res, next) => {
         .save()
         .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
         .catch((error) =>
-          res.status(400).json({ message: "utilisateur déja créé" })
+          res.status(400).json({ message: "utilisateur déja existant" })
         );
     })
     .catch((error) =>
       res
         .status(400)
-        .json({ message: "Veuillez saisir les champs correspondants" })
+        .json({ message: "Veuillez saisir tout les champs correspondants" })
     );
 };
 
