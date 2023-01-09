@@ -38,8 +38,8 @@ const Signup = () => {
           setNewUser(UserLogin.error);
         }
       })
-      .catch((error) => {
-        setNewUser(error.error.message);
+      .catch((err) => {
+        setNewUser(err.message);
       });
   };
 

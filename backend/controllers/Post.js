@@ -48,7 +48,9 @@ exports.ModifyPost = (req, res, next) => {
     : { message: req.body.message };
 
   if (req.file) {
-    Post.findOne({ _id: req.params.id })
+    Post.findOne({ _id: req.params.id });
+    console
+      .log(Post.findOne({ _id: req.params.id }))
       .then((post) => {
         if (post.userId === userId || isAdmin === true) {
           const filename = post.imageUrl.split("/images/")[1];
@@ -65,7 +67,7 @@ exports.ModifyPost = (req, res, next) => {
   }
 
   Post.updateOne({ _id: req.params.id }, { ...editPost })
-    .then(() => res.status(200).json({ message: "Post modifiée !" }))
+    .then(() => res.status(200).json({ message: "Post modifié !" }))
     .catch((error) => res.status(400).json({ error }));
 };
 
@@ -86,7 +88,7 @@ exports.deletePost = (req, res, next) => {
       } else {
         res
           .status(400)
-          .json({ message: "L'utilisateur ne peu pas supprimer ce post" });
+          .json({ message: "L'utilisateur ne peut pas supprimer ce post" });
       }
     })
     .catch((error) => {
