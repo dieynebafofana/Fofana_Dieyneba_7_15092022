@@ -38,19 +38,20 @@ exports.PostId = (req, res, next) => {
 
 exports.ModifyPost = (req, res, next) => {
   const { userId, isAdmin } = req.auth;
-  if (Post.userId == userId || isAdmin === true) {
-    const editPost = req.file
-      ? {
-          message: req.body.message,
-          imageUrl: `${req.protocol}://${req.get("host")}/images/${
-            req.file.filename
-          }`,
-        }
-      : { message: req.body.message };
 
-    if (req.file) {
-      Post.findOne({ _id: req.params.id })
-        .then((post) => {
+  Post.findOne({ _id: req.params.id })
+    .then((post) => {
+      if (post.userId == userId || isAdmin === true) {
+        const editPost = req.file
+          ? {
+              message: req.body.message,
+              imageUrl: `${req.protocol}://${req.get("host")}/images/${
+                req.file.filename
+              }`,
+            }
+          : { message: req.body.message };
+
+        if (req.file) {
           const filename = post.imageUrl.split("/images/")[1];
           fs.unlink(`images/${filename}`, (error) => {
             if (error) {
@@ -59,14 +60,14 @@ exports.ModifyPost = (req, res, next) => {
                 .json({ message: "erreur suppression image Post" });
             }
           });
-        })
-        .catch((error) => res.status(400).json({ message: "erreur Post" }));
-    }
-  }
+        }
 
-  Post.updateOne({ _id: req.params.id }, { ...editPost })
-    .then(() => res.status(200).json({ message: "Post modifié !" }))
-    .catch((error) => res.status(400).json({ error }));
+        Post.updateOne({ _id: req.params.id }, { ...editPost })
+          .then(() => res.status(200).json({ message: "Post modifié !" }))
+          .catch((error) => res.status(400).json({ error }));
+      }
+    })
+    .catch((error) => res.status(400).json({ message: "erreur Post" }));
 };
 
 exports.deletePost = (req, res, next) => {

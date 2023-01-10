@@ -1,10 +1,9 @@
 import { useContext, useState } from "react";
-import Logo from "../components/Header/Logo/Logo";
-import Nav from "../components/Header/Nav/Nav";
-import "../../src/styles/pages/index.scss";
+import Logo from "../../components/Header/Logo/Logo";
+import Nav from "../../components/Header/Nav/Nav";
 import { useNavigate } from "react-router-dom";
-import Button from "../components/UI/Button";
-import AuthContext from "../Store/AuthContext";
+import Button from "../../components/UI/Button";
+import AuthContext from "../../Store/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -21,7 +20,7 @@ const Login = () => {
       password: password,
     };
 
-    fetch("http://localhost:3000/api/auth/login", {
+    fetch("http://localhost:5000/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -72,7 +71,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          {<span className="text-color">{error}</span>}
+          {<span className="textError">{error}</span>}
           <div>
             {!isLoading && (
               <Button className="btnLogin" type="submit" value="connexion">

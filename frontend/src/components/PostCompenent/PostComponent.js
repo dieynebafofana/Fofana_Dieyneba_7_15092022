@@ -12,14 +12,15 @@ const Post = ({ Post, FetchPosts }) => {
   const [activeLike, setActiveLike] = useState(
     Post.usersLiked.includes(AuthCtxt.userId)
   );
+  const [Postdelete, setPostdelete] = useState("");
   const buttonPost =
     AuthCtxt.userId === Post.userId._id || AuthCtxt.isAdmin === true;
 
   const DeletePost = (Post) => {
     const ConfirmDelete = window.confirm("Voulez-vous supprimer ce post ?");
 
-    if (ConfirmDelete == true) {
-      fetch(`http://localhost:3000/api/posts/${Post._id}`, {
+    if (ConfirmDelete === true) {
+      fetch(`http://localhost:5000/api/posts/${Post._id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${AuthCtxt.token}`,
@@ -27,9 +28,12 @@ const Post = ({ Post, FetchPosts }) => {
       })
         .then((data) => data.json())
         .then((PostUser) => {
+          setPostdelete(alert(PostUser.message));
           FetchPosts();
         })
-        .catch((error) => {});
+        .catch((error) => {
+          setPostdelete(alert(error.error));
+        });
     } else {
       return;
     }
@@ -55,7 +59,7 @@ const Post = ({ Post, FetchPosts }) => {
       setLiked(liked + 1);
     }
 
-    fetch(`http://localhost:3000/api/posts/${Post._id}/like`, {
+    fetch(`http://localhost:5000/api/posts/${Post._id}/like`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -102,6 +106,7 @@ const Post = ({ Post, FetchPosts }) => {
             >
               supprimer
             </Button>
+            {Postdelete}
           </>
         )}
         <Button onClick={(e) => Onlike(e)}>

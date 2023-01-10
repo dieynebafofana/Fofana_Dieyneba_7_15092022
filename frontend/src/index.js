@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "../src/styles/pages/index.scss";
 import Post from "./pages/Post";
 import Error from "./components/Error";
-import Login from "./pages/Login";
+import Login from "./pages/login/Login";
 import Signup from "./pages/Signup";
 import { AuthContextProvider } from "./Store/AuthContext";
 

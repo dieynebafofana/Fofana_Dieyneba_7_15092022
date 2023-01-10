@@ -18,7 +18,7 @@ const PostModify = ({ Post, setModify, updatePosts }) => {
     formData.append("message", message);
     formData.append("image", image);
 
-    fetch(`http://localhost:3000/api/posts/${IdPost}`, {
+    fetch(`http://localhost:5000/api/posts/${IdPost}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${AuthCtxt.token}`,

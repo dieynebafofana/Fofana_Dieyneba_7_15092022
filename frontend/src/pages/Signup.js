@@ -2,7 +2,6 @@ import { useState } from "react";
 import Logo from "../components/Header/Logo/Logo";
 import Nav from "../components/Header/Nav/Nav";
 import "../../src/styles/pages/index.scss";
-import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [pseudo, setPseudo] = useState("");
@@ -10,8 +9,6 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [newUser, setNewUser] = useState("");
   const [error, setError] = useState(null);
-
-  const Navigate = useNavigate();
 
   const functionSignup = (e) => {
     e.preventDefault();
@@ -21,7 +18,7 @@ const Signup = () => {
       password: password,
     };
 
-    fetch("http://localhost:3000/api/auth/signup", {
+    fetch("http://localhost:5000/api/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,15 +29,13 @@ const Signup = () => {
       .then((UserLogin) => {
         if (UserLogin.ok) {
           setNewUser(UserLogin.message);
-          Navigate("/Login");
         } else {
           setError(UserLogin.message);
           setNewUser(UserLogin.error);
         }
       })
-      .catch((err) => {
-        setNewUser(err.message);
-      });
+
+      .catch((error) => {});
   };
 
   return (
@@ -76,7 +71,7 @@ const Signup = () => {
             />
           </div>
           {newUser}
-          {<span className="text-color">{error}</span>}
+          {<span className="textError">{error}</span>}
           <div>
             <button className="btnConnexion" type="submit" value="Connexion">
               S'inscrire

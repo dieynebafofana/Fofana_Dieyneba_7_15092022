@@ -19,7 +19,7 @@ const PostForm = ({ PostOnUpdate }) => {
     formData.append("message", message);
     formData.append("image", image);
 
-    fetch("http://localhost:3000/api/posts", {
+    fetch("http://localhost:5000/api/posts", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${AuthCtxt.token}`,

@@ -14,7 +14,7 @@ const Post = () => {
   const Navigate = useNavigate();
 
   const FetchPosts = () => {
-    fetch("http://localhost:3000/api/posts", {
+    fetch("http://localhost:5000/api/posts", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${AuthCtxt.token}`,

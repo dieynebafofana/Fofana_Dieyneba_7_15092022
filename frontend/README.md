@@ -13,6 +13,11 @@ installe l'application
 lancer l'application en entrant la commande `node server`
 
 Créer un fichier `.env` pour stocker les variables d'environnement telle les identifiants mongodb.
+PORT=5000
+HOST={ClusterURL MongoDB}/{Name base de donnée MongoDB}
+USER={Nom Utilisateur MongoDB}
+PASSWORD={Password MongoDB}
+TOKEN={Token_secret}
 
 ## Le server de développement
 
@@ -22,7 +27,8 @@ Le serveur doit fonctionner sur localhost avec le port 3000 par défaut. Si le s
 
 Ouvrir le terminal en ce plaçant sur le dossier `groupomania`
 
-//Npm install
+`npm start`
+installe l'application
 
 `npm start`
 Ouvre l'application React
