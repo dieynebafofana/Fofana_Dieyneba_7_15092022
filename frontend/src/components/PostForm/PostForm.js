@@ -7,6 +7,7 @@ import Button from "../UI/Button";
 const PostForm = ({ PostOnUpdate }) => {
   const [message, setMessage] = useState(null);
   const [image, setImage] = useState(null);
+  const [newPost, setNewPost] = useState();
 
   const AuthCtxt = useContext(AuthContext);
 
@@ -29,6 +30,7 @@ const PostForm = ({ PostOnUpdate }) => {
       .then((Post) => {
         setMessage("");
         setImage("");
+        setNewPost(alert(Post.message));
         PostOnUpdate();
       })
       .catch((error) => {});
@@ -78,6 +80,7 @@ const PostForm = ({ PostOnUpdate }) => {
             </div>
           </div>
         </form>
+        {newPost}
       </section>
     </div>
   );

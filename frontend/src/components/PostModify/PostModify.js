@@ -29,7 +29,7 @@ const PostModify = ({ Post, setModify, updatePosts }) => {
       .then((res) => {
         setModify(false);
         updatePosts();
-        setMessageModify(res.message);
+        setMessageModify(alert(res.message));
       })
       .catch((error) => {});
   };
@@ -56,7 +56,7 @@ const PostModify = ({ Post, setModify, updatePosts }) => {
         <div className="BtnSend">
           <Button onClick={(e) => updatePost(e)}>Envoyer</Button>
         </div>
-        {<span>{messageModify}</span>}
+        {messageModify}
       </form>
     </div>
   );

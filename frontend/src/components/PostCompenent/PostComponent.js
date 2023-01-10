@@ -16,17 +16,23 @@ const Post = ({ Post, FetchPosts }) => {
     AuthCtxt.userId === Post.userId._id || AuthCtxt.isAdmin === true;
 
   const DeletePost = (Post) => {
-    fetch(`http://localhost:3000/api/posts/${Post._id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${AuthCtxt.token}`,
-      },
-    })
-      .then((data) => data.json())
-      .then((PostUser) => {
-        FetchPosts();
+    const ConfirmDelete = window.confirm("Voulez-vous supprimer ce post ?");
+
+    if (ConfirmDelete == true) {
+      fetch(`http://localhost:3000/api/posts/${Post._id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${AuthCtxt.token}`,
+        },
       })
-      .catch((error) => {});
+        .then((data) => data.json())
+        .then((PostUser) => {
+          FetchPosts();
+        })
+        .catch((error) => {});
+    } else {
+      return;
+    }
   };
 
   const ModifyPostToggle = () => {
